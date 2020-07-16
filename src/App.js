@@ -1,13 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
+import pic2 from './pic2.png';
 import './App.css';
+import Profilepicture from './components/profile_pictures.jsx'
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
+        {/* <img src={pic} className="App-logo" alt="logo" /> */}
+        {/* <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <a
@@ -17,7 +18,8 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-        </a>
+        </a> */}
+        <Profilepicture height="200px" width="200px" url= {pic2} top="300px" left="100px" />
       </header>
     </div>
   );
