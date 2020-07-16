@@ -40,11 +40,17 @@
     top: 50px;
 }
 
-.MentorCol {
+.column {
+    float: left;
     width: 50%;
-    height: 300px;
-}
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
 
-.MentorRow::after {
+.row:after {
+    position: relative;
+    top: 200px;
+    content: "";
     display: table;
-}
+    clear: both;
+  }

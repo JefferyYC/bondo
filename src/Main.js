@@ -43,14 +43,27 @@ class Main extends React.Component {
                         Get Exlusive Mentorship and make appointment with your private mentor!
                     </p>
                 </div>
-                <div className = "MentorRow">
-                    <div className = "MentorCol">
+
+                <div class="row">
+                    <div class="column left">
                         <h2>Column 1</h2>
+                        <p>Some text..</p>
                     </div>
-                    <div className = "MentorCol">
+                    <div class="column middle">
                         <h2>Column 2</h2>
+                        <p>Some text..</p>
+                    </div>
+                    <div class="column right">
+                        <h2>Column 3</h2>
+                        <p>Some text..</p>
                     </div>
                 </div>
+
+                <Container fluid>
+                    <Row>
+                        <Col>1 of 1</Col>
+                    </Row>
+                </Container>
             </div>
         );
     }
