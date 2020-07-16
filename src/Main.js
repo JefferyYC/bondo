@@ -1,5 +1,8 @@
 import React from 'react';
 import './Main.css';
+import './components/profile_pictures.css'
+import pic2 from './pic2.png';
+import Profilepicture from './components/profile_pictures.jsx';
 
 class Main extends React.Component {
     render() {
@@ -27,6 +30,7 @@ class Main extends React.Component {
                         Look through hundreds of experienced in various industries to find the one who suits you best.
                     </p>
                 </div>
+                <Profilepicture height="200px" width="200px" url= {pic2} top="200px" left="800px" />
                 <div className = "Procedure">
                     <h1 id="procedureHeader">
                         Confirm Interest
