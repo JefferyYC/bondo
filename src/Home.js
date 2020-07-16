@@ -1,5 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import pic2 from './pic2.png';
+import Profilepicture from './components/profile_pictures.jsx';
+import './Main.css';
+
 const GridWrapper = styled.div`
   display: grid;
   grid-gap: 10px;
@@ -9,12 +13,6 @@ const GridWrapper = styled.div`
   grid-template-columns: repeat(12, 1fr);
   grid-auto-rows: minmax(25px, auto);
 `;
-// export const Home = (props) => (
-//   <GridWrapper>
-//     <p>This is a paragraph and I am writing on the home page</p>
-//     <p>This is another paragraph, hi hey hello whatsup yo</p>
-//   </GridWrapper>
-// )
 
 export const Home = (props) => (
   <div classNameName = "Main">
@@ -40,6 +38,7 @@ export const Home = (props) => (
                         Look through hundreds of experienced in various industries to find the one who suits you best.
                     </p>
                 </div>
+                <Profilepicture height="200px" width="200px" url= {pic2} top="250px" left="1000px" />
                 <div className = "Procedure">
                     <h1 id="procedureHeader">
                         Confirm Interest
