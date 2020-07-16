@@ -1,5 +1,5 @@
 import React from 'react';
-import pic2 from './pic2.png';
+// import pic2 from './pic2.png';
 import './App.css';
 import Profilepicture from './components/profile_pictures.jsx'
 
@@ -16,7 +16,7 @@ function App() {
   <React.Fragment>
     <Router>
     <NavigationBar />
-    <Profilepicture height="200px" width="200px" url= {pic2} top="300px" left="100px" />
+    <Profilepicture height="200px" width="200px" url= {require('./pic2.png')} top="300px" left="100px" />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/about" component={About} />
