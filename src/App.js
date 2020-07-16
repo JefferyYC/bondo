@@ -1,6 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
+import pic2 from './pic2.png';
 import './App.css';
+import Profilepicture from './components/profile_pictures.jsx'
 
 //imported by ziang. (nav bar)
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -15,14 +16,15 @@ function App() {
   <React.Fragment>
     <Router>
     <NavigationBar />
+    <Profilepicture height="200px" width="200px" url= {pic2} top="300px" left="100px" />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/about" component={About} />
         <Route component={NoMatch} />
-      </Switch>
-      
+      </Switch>   
     </Router>
   </React.Fragment>
+        
   );
 }
 
