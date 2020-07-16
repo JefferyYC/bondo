@@ -13,6 +13,7 @@ class Main extends React.Component {
     render() {
         return (
             <div classNameName = "Main">
+                
                 <div className = "NavBar">
                     <React.Fragment>
                         <Router>
@@ -25,6 +26,7 @@ class Main extends React.Component {
                         </Router>
                     </React.Fragment>
                 </div>
+
                 <div className = "Intro">
                     <h1 id="introHeader"> 
                         Bondo<br></br>World Leading Mentorship Platform
