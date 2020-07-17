@@ -1,0 +1,92 @@
+.Intro{
+    position: relative;
+    top: 100px;
+    height: 350px;
+    width: 100%;
+    background-color: rgba(59, 89, 152, 1);
+}
+
+#introHeader{
+    font-size: 50px;
+    position: relative;
+    left: 50px;
+    top: 50px;
+    color: rgb(255, 255, 255);
+}
+
+#introP{
+    position: relative;
+    top: 50px;
+    left: 50px;
+    color: rgb(255, 255, 255);
+}
+
+.Procedure{
+    position: relative;
+    top: 200px;
+    background-color: blue;
+    height: 200px;
+}
+
+#procedureHeader{
+    position: relative;
+    left: 50px;
+    top: 50px;
+}
+
+#procedureP{
+    position: relative;
+    left: 50px;
+    top: 50px;
+}
+
+.Mentor {
+    position: relative;
+    top: 300px;
+    height: 600px
+}
+
+.Bio {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 200px;
+    height: 200px;
+}
+
+#mentorName {
+    position: relative;
+    font-size: 50;
+    text-align:center;
+    top: -50px;
+}
+
+#mentorDescription {
+    margin-left: 10%;
+    margin-right: 10%;
+    position: relative;
+    text-align:center;
+    top: -100;
+}
+
+.Mentee {
+    position: relative;
+    height: 200px;
+    top: 100px;
+}
+
+#menteeName {
+    position: relative;
+    font-size: 20;
+    text-align:center;
+    top: 50px;
+}
+
+#menteeDescription {
+    position: relative;
+    text-align: left;
+    margin-left: 5%;
+    margin-right: 60%;
+    left: 40%;
+    top: 100px;
+}
