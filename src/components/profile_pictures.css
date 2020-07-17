@@ -1,7 +1,7 @@
 .Circle {
     background-image: url('pic.png');
     background-repeat: no-repeat;
-    position: relative;
+    position: absolute;
     height: 200px;
     width: 200px;
     top:100px;

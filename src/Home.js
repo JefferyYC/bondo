@@ -19,57 +19,56 @@ const GridWrapper = styled.div`
 `;
 
 export const Home = (props) => (
-  <div classNameName = "Main">
-                <div className = "Intro">
-                    <h1 id="introHeader"> 
-                        Bondo<br></br>World Leading Mentorship Platform
-                    </h1>
-                    <p id="introP">
-                        We are a platform dedicated to providing the best mentorship for you.
-                    </p>
-                    <p id="introP">
-                        You pay for your future!
-                    </p>
-                    <p id="introP">
-                        Don't hesitate. Sign up now!
-                    </p>
-                </div>
-                <div className = "Procedure">
+    <div classNameName = "Main">
+        <div className = "Intro">
+            <h1 id="introHeader"> 
+                Bondo<br></br>World Leading Mentorship Platform
+            </h1>
+            <p id="introP">
+                We are a platform dedicated to providing the best mentorship for you.
+            </p>
+            <p id="introP">
+                You pay for your future!
+            </p>
+            <p id="introP">
+                Don't hesitate. Sign up now!
+            </p>
+        </div>
+
+        <Container fluid className = "Procedure">
+            <Row id = "step1">
+                <Col>
+                    <Profilepicture height="170px" width="170px" url= {pic2} top="0px" left="1000px"/>
                     <h1 id="procedureHeader">
                         Find a Mentor
                     </h1>
                     <p id="procedureP">
                         Look through hundreds of experienced in various industries to find the one who suits you best.
                     </p>
-                </div>
-                <div className = "Procedure">
+                </Col>
+            </Row>
+            <Row id = "step2">
+                <Col>
+                    <Profilepicture height="170px" width="170px" url= {pic2} top="0px" left="1000px"/>
                     <h1 id="procedureHeader">
                         Confirm Interest
                     </h1>
                     <p id="procedureP">
-                        Look through hundreds of experienced in various industries to find the one who suits you bestTell your mentor your need and interest. Confirm your mentorship with a refundable fee. .
+                        Tell your mentor your need and interest. Confirm your mentorship with a refundable fee.
                     </p>
-                </div>
-                <div className = "Procedure">
+                </Col>
+            </Row>
+            <Row id = "step3">
+                <Col>
+                    <Profilepicture height="170px" width="170px" url= {pic2} top="0px" left="1000px"/>
                     <h1 id="procedureHeader">
                         Get “Exclusive” Mentorship
                     </h1>
                     <p id="procedureP">
                         Get Exlusive Mentorship and make appointment with your private mentor!
                     </p>
-                </div>
-                <Container fluid className = "Mentor">
-                    <Row>
-                        <Col>
-                            Jeffery Chen 
-                            <br></br> 
-                            CEO of Bondo
-                        </Col>
-                        <Col>2 of 3</Col>
-                            <Profilepicture height="200px" width="200px" url= {pic2}/>
-                        <Col>3 of 3</Col>
-                    </Row>
-                </Container>
-
-            </div>
+                </Col>
+            </Row>
+        </Container>
+    </div>
 )
