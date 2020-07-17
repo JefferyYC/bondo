@@ -4,8 +4,9 @@
     position: absolute;
     height: 200px;
     width: 200px;
-    top:300px;
+    top:500px;
     left:300px;
     border-radius: 50%;
     display: inline-block;
 }
+
