@@ -40,11 +40,7 @@
     top: 50px;
 }
 
-.MentorCol {
-    width: 50%;
-    height: 300px;
-}
-
-.MentorRow::after {
-    display: table;
+.Mentor {
+    position: relative;
+    top: 300px
 }

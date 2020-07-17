@@ -4,6 +4,10 @@ import pic2 from './pic2.png';
 import Profilepicture from './components/profile_pictures.jsx';
 import './Main.css';
 
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+
 const GridWrapper = styled.div`
   display: grid;
   grid-gap: 10px;
@@ -38,7 +42,10 @@ export const Home = (props) => (
                         Look through hundreds of experienced in various industries to find the one who suits you best.
                     </p>
                 </div>
+<<<<<<< HEAD
                 <Profilepicture height="200px" width="200px" url= {pic2} />
+=======
+>>>>>>> b5b1070cac1a9825bccf56d1152edab6e20e5a73
                 <div className = "Procedure">
                     <h1 id="procedureHeader">
                         Confirm Interest
@@ -55,13 +62,18 @@ export const Home = (props) => (
                         Get Exlusive Mentorship and make appointment with your private mentor!
                     </p>
                 </div>
-                <div className = "MentorRow">
-                    <div className = "MentorCol">
-                        <h2>Column 1</h2>
-                    </div>
-                    <div className = "MentorCol">
-                        <h2>Column 2</h2>
-                    </div>
-                </div>
+                <Container fluid className = "Mentor">
+                    <Row>
+                        <Col>
+                            Jeffery Chen 
+                            <br></br> 
+                            CEO of Bondo
+                        </Col>
+                        <Col>2 of 3</Col>
+                            <Profilepicture height="200px" width="200px" url= {pic2}/>
+                        <Col>3 of 3</Col>
+                    </Row>
+                </Container>
+
             </div>
 )
