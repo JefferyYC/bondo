@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import pic2 from './pic2.png';
+import lyk from './lyk.jpeg';
 import Profilepicture from './components/profile_pictures.jsx';
-import './Main.css';
+import './Home.css';
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -42,10 +42,6 @@ export const Home = (props) => (
                         Look through hundreds of experienced in various industries to find the one who suits you best.
                     </p>
                 </div>
-<<<<<<< HEAD
-                <Profilepicture height="200px" width="200px" url= {pic2} />
-=======
->>>>>>> b5b1070cac1a9825bccf56d1152edab6e20e5a73
                 <div className = "Procedure">
                     <h1 id="procedureHeader">
                         Confirm Interest
@@ -65,14 +61,71 @@ export const Home = (props) => (
                 <Container fluid className = "Mentor">
                     <Row>
                         <Col>
-                            Jeffery Chen 
-                            <br></br> 
-                            CEO of Bondo
+                        <Profilepicture height="300px" width="300px" url= {lyk}/>
                         </Col>
-                        <Col>2 of 3</Col>
-                            <Profilepicture height="200px" width="200px" url= {pic2}/>
-                        <Col>3 of 3</Col>
+                        <Col>
+                            <Profilepicture height="300px" width="300px" url= {lyk}/>
+                        </Col> 
+                        <Col>
+                            <Profilepicture height="300px" width="300px" url= {lyk}/>
+                        </Col>
                     </Row>
+                    <Row>
+                        <Col>
+                            <div className = "Bio">
+                                <h1 id="mentorName">
+                                Yukai Luo
+                                </h1>
+                                <h2 id="mentorDescription">
+                                    Dad of Bondo!Dad of BondoDad of BondoDad of BondoDad of BondoDad of Bondo
+                                </h2>
+                                <h3 id="mentorDescription">
+                                    King of the Undying
+                                </h3>
+                                <h4 id="mentorDescription">
+                                    Slayer of Dragons
+                                </h4>
+                            </div>
+                        </Col>
+                        <Col>
+                            <div className = "Bio">
+                                <h1 id="mentorName">
+                                Yukai Luo
+                                </h1>
+                                <p id="mentorDescription">
+                                    Dad of Bondo
+                                </p>
+                            </div>
+                        </Col> 
+                        <Col>
+                        <div className = "Bio">
+                                <h1 id="mentorName">
+                                Yukai Luo
+                                </h1>
+                                <p id="mentorDescription">
+                                    Dad of Bondo
+                                </p>
+                            </div>
+                        </Col>
+
+                    </Row>
+                </Container>
+                {/* Mentee bio */}
+                <Container fluid className="Mentee">
+                    <Col xs={4}>
+                        <Profilepicture height="400px" width="400px" url= {lyk} top="600px"/>
+                    </Col>
+                    <Col>
+                        <div className = "Bio">
+                            <h1 id="menteeName">
+                                Yukai Luo
+                            </h1>
+                            <h2 id="menteeDescription">
+                                Yukai Luo is the Dad of Bondo and has a GPA of 4.0 at University of Zoom
+                            </h2>
+                        </div>
+                    </Col>
+
                 </Container>
 
             </div>
