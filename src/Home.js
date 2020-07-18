@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import pic2 from './pic2.png';
+import lyk from './lyk.jpeg';
 import Profilepicture from './components/profile_pictures.jsx';
-import './Main.css';
+import './Home.css';
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -19,7 +19,7 @@ const GridWrapper = styled.div`
 `;
 
 export const Home = (props) => (
-    <div classNameName = "Main">
+    <div classNameName = "Home">
         <div className = "Intro">
             <h1 id="introHeader"> 
                 Bondo<br></br>World Leading Mentorship Platform
@@ -38,7 +38,7 @@ export const Home = (props) => (
         <Container fluid className = "Procedure">
             <Row id = "step1">
                 <Col>
-                    <Profilepicture height="170px" width="170px" url= {pic2} top="0px" left="1000px"/>
+                    <Profilepicture height="160px" width="160px" url= {lyk} top="20px" left="1200px"/>
                     <h1 id="procedureHeader">
                         Find a Mentor
                     </h1>
@@ -49,7 +49,7 @@ export const Home = (props) => (
             </Row>
             <Row id = "step2">
                 <Col>
-                    <Profilepicture height="170px" width="170px" url= {pic2} top="0px" left="1000px"/>
+                    <Profilepicture height="160px" width="160px" url= {lyk} top="20px" left="1200px"/>
                     <h1 id="procedureHeader">
                         Confirm Interest
                     </h1>
@@ -60,13 +60,85 @@ export const Home = (props) => (
             </Row>
             <Row id = "step3">
                 <Col>
-                    <Profilepicture height="170px" width="170px" url= {pic2} top="0px" left="1000px"/>
+                    <Profilepicture height="160px" width="160px" url= {lyk} top="20px" left="1200px"/>
                     <h1 id="procedureHeader">
                         Get “Exclusive” Mentorship
                     </h1>
                     <p id="procedureP">
                         Get Exlusive Mentorship and make appointment with your private mentor!
                     </p>
+                </Col>
+            </Row>
+        </Container>
+
+        <Container fluid className = "Mentor">
+            <Row>
+                <Col>
+                    <Profilepicture height="300px" width="300px" top="0px" left="50%" url= {lyk}/>
+                </Col>
+                <Col>
+                    <Profilepicture height="300px" width="300px" top="0px" left="50%" url= {lyk}/>
+                </Col> 
+                <Col>
+                    <Profilepicture height="300px" width="300px" top="0px" left="50%" url= {lyk}/>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <div className = "MentorBio">
+                        <h1 id="mentorName">
+                        Yukai Luo
+                        </h1>
+                        <h2 id="mentorDescription">
+                            Dad of Bondo!Dad of BondoDad of BondoDad of BondoDad of BondoDad of Bondo
+                        </h2>
+                        <h3 id="mentorDescription">
+                            King of the Undying
+                        </h3>
+                        <h4 id="mentorDescription">
+                            Slayer of Dragons
+                        </h4>
+                    </div>
+                </Col>
+                <Col>
+                    <div className = "MentorBio">
+                        <h1 id="mentorName">
+                        Yukai Luo
+                        </h1>
+                        <p id="mentorDescription">
+                            Dad of Bondo
+                        </p>
+                    </div>
+                </Col> 
+                <Col>
+                <div className = "MentorBio">
+                        <h1 id="mentorName">
+                        Yukai Luo
+                        </h1>
+                        <p id="mentorDescription">
+                            Dad of Bondo
+                        </p>
+                    </div>
+                </Col>
+
+            </Row>
+        </Container>
+
+        {/* Mentee bio */}
+        <Container fluid className="Mentee">
+            <Row>
+                <Col>
+                    <Profilepicture height="300px" width="300px" top="0px" left="50%" url= {lyk}/>
+                </Col>
+                <Col>
+                    <div className = "MenteeBio">
+                        <h1 id="menteeName">
+                            Yukai Luo
+                        </h1>
+                        <h2 id="menteeDescription">
+                            Yukai Luo is the Dad of Bondo and has a GPA of 4.0 at University of Zoom
+                        </h2>
+                    </div>
                 </Col>
             </Row>
         </Container>
