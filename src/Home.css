@@ -29,7 +29,7 @@
     position: absolute;
     top: 500px;
     background-color: blue;
-    height: 600px;
+    height: 650px;
 }
 
 #step1{
@@ -50,6 +50,12 @@
     position: absolute;
     top: 400px;
     width: 100%;
+}
+
+#more_button{
+    position: absolute;
+    top: 600px;
+    right: 10px;
 }
 
 #procedureHeader{
@@ -108,4 +114,12 @@
     text-align: left;
     margin-left: 5%;
     margin-right: 5%;
+}
+
+.Contact {
+    position: absolute;
+    height: 350px;
+    top: 2350px;
+    background-color: pink;
+    text-align: center;
 }

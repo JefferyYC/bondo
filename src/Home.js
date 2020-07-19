@@ -68,7 +68,8 @@ export const Home = (props) => (
                         Get Exlusive Mentorship and make appointment with your private mentor!
                     </p>
                 </Col>
-            </Row>
+            </Row> 
+            <button id = "more_button">More Mentors</button>
         </Container>
 
         <Container fluid className = "Mentor">
@@ -141,6 +142,13 @@ export const Home = (props) => (
                     </div>
                 </Col>
             </Row>
+        </Container>
+
+        <Container fluid className="Contact">
+            <h1>Contact us</h1>
+            <p1>陈鹏宇:4008823823</p1>
+            <br></br>
+            <p1>罗玉凯:10086</p1>
         </Container>
     </div>
 )
