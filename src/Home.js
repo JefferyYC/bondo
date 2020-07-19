@@ -69,7 +69,6 @@ export const Home = (props) => (
                     </p>
                 </Col>
             </Row> 
-            <button id = "more_button">More Mentors</button>
         </Container>
 
         <Container fluid className = "Mentor">
@@ -121,8 +120,8 @@ export const Home = (props) => (
                         </p>
                     </div>
                 </Col>
-
             </Row>
+            <button id = "more_button">More Mentors</button>
         </Container>
 
         {/* Mentee bio */}
