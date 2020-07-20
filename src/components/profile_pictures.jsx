@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-// import pic2 from "./src/pic2.png";
 import './profile_pictures.css';
 
 function Profilepicture(props) {
