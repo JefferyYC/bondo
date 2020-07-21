@@ -1,0 +1,95 @@
+.block {
+    background-color: aqua;
+    height: 200px;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#head {
+    height: 600px;
+}
+
+.subblk {
+    background-color: pink;
+    width:40%;
+    height:85%;
+    flex-direction: column;
+    flex-direction: center;
+}
+
+#head_l {
+    position: relative;
+    width: 20%;
+    left: -10px;
+}
+
+#head_r {
+    width: 60%;
+}
+
+#intro {
+    flex-direction: column;
+}
+
+#mentor_name {
+    position: absolute;
+    top: 400px;
+    align-self: center;
+    left: 60px;
+    color: blue;
+}
+
+#mentor_buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+#intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+#exp {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+#edu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+#rating {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.section_title {
+    height:20%;
+    background-color: coral;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.section_content {
+    height: 80%;
+    background-color: crimson;
+    font-size: 25px;
+    font-weight: 400;
+    text-align: center;
+}
+
