@@ -11,6 +11,8 @@ import PrivateRoute from './PrivateRoute';
 import Login from './Login'
 import Signup from './Signup'
 
+//reference: https://medium.com/better-programming/building-basic-react-authentication-e20a574d5e71
+
 function App() {
 
   const existingTokens = JSON.parse(localStorage.getItem("tokens"));

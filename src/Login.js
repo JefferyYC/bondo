@@ -11,7 +11,7 @@ function Login() {
     const [isError, setIsError] = useState(false);
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const { setAuthTokens } = useAuth();
+    const { authTokens, setAuthTokens } = useAuth();
 
     function postLogin() {
         /*
@@ -29,8 +29,10 @@ function Login() {
           setIsError(true);
         });
         */
-       setAuthTokens("asasassaas")
-       setLoggedIn(true);
+       setAuthTokens("test")
+       if (authTokens == "test") {
+         setLoggedIn(true);
+       }
     }
 
     if (isLoggedIn) {

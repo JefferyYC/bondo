@@ -8,7 +8,7 @@ function About(props) {
   const { setAuthTokens } = useAuth();
 
   function logOut() {
-    setAuthTokens();
+    setAuthTokens("wrong");
   }
 
   return (
