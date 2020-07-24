@@ -10,7 +10,7 @@ const { request } = require('express');
 dotenv.config();
 
 //Connect to DB
-mongoose.connect(process.env.DB_CONNECT, { useUnifiedTopology: true }, () => console.log('Connected to DB!'));
+mongoose.connect(process.env.DB_CONNECT, {useUnifiedTopology: true, useNewUrlParser: true}, () => console.log('Conneced to DB!'))
 
 //Middleware
 app.use(express.json());
