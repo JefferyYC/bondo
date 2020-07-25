@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import lyk from './lyk.jpeg';
-import Profilepicture from './components/profile_pictures.jsx';
-import './Home.css';
+import lyk from '../lyk.jpeg';
+import Profilepicture from '../components/profile_pictures.jsx';
+import '../css/Home.css';
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'

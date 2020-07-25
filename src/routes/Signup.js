@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import logoImg from "./lyk.jpeg";
-import { Card, Logo, Form, Input, Button } from './components/AuthForm';
+import logoImg from "../lyk.jpeg";
+import { Card, Logo, Form, Input, Button } from '../components/AuthForm';
 
 function Signup() {
   return (

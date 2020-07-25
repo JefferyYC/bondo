@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import './profile_pictures.css';
+import '../css/profile_pictures.css';
 
 function Profilepicture(props) {
     const style1 = {

@@ -3,13 +3,13 @@ import './index.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { NavigationBar } from './components/NavigationBar';
-import { Home } from './Home';
-import About from './About';
-import { NoMatch } from './NoMatch';
+import { Home } from './routes/Home';
+import About from './routes/About';
+import { NoMatch } from './routes/NoMatch';
 import { AuthContext } from './context/auth';
-import PrivateRoute from './PrivateRoute';
-import Login from './Login'
-import Signup from './Signup'
+import PrivateRoute from './components/PrivateRoute';
+import Login from './routes/Login'
+import Signup from './routes/Signup'
 
 //reference: https://medium.com/better-programming/building-basic-react-authentication-e20a574d5e71
 

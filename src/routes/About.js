@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from "./components/AuthForm";
-import { useAuth } from "./context/auth";
+import { Button } from "../components/AuthForm";
+import { useAuth } from "../context/auth";
 import { Redirect } from "react-router-dom";
 
 
