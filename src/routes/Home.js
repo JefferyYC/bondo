@@ -19,7 +19,7 @@ const GridWrapper = styled.div`
 `;
 
 export const Home = (props) => (
-    <div classNameName = "Home">
+    <div className = "Home">
         <div className = "Intro">
             <h1 id="introHeader"> 
                 Bondo<br></br>World Leading Mentorship Platform
@@ -145,9 +145,9 @@ export const Home = (props) => (
 
         <Container fluid className="Contact">
             <h1>Contact us</h1>
-            <p1>陈鹏宇:4008823823</p1>
+            <p>陈鹏宇:4008823823</p>
             <br></br>
-            <p1>罗玉凯:10086</p1>
+            <p>罗玉凯:10086</p>
         </Container>
     </div>
 )
