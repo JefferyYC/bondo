@@ -14,25 +14,31 @@ function Login() {
     const { authTokens, setAuthTokens } = useAuth();
 
     function postLogin() {
-        /*
-        axios.post("https://www.somePlace.com/auth/login", {
-          userName,
-          password
-        }).then(result => {
-          if (result.status === 200) {
-            setAuthTokens(result.data);
-            setLoggedIn(true);
-          } else {
-            setIsError(true);
-          }
-        }).catch(e => {
+      var postData = {
+        email: userName,
+        password: password
+      };
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+
+      axios.post("http://localhost:5000/api/user/login", postData, config)
+      .then(result => {
+        if (result.status === 200) {
+          console.log("successful login")
+          setAuthTokens(result.data);
+          setLoggedIn(true);
+        } else {
+          console.log("unsuccessful")
           setIsError(true);
-        });
-        */
-       setAuthTokens("test")
-       if (authTokens == "test") {
-         setLoggedIn(true);
-       }
+        }
+      }).catch(e => {
+        console.log("error")
+        setIsError(true);
+      });
     }
 
     if (isLoggedIn) {
