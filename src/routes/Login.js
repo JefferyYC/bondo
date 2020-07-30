@@ -12,6 +12,7 @@ function Login() {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const { authTokens, setAuthTokens } = useAuth();
+    const [error, setError] = useState("");
 
     function postLogin() {
       var postData = {
@@ -33,14 +34,17 @@ function Login() {
           setLoggedIn(true);
         } else {
           console.log("unsuccessful")
+          setError(result.data);
           setIsError(true);
         }
       }).catch(e => {
         console.log("error")
+        setError(e.response.data)
         setIsError(true);
       });
     }
 
+    //if successfully logged in, redirect to home page
     if (isLoggedIn) {
         return <Redirect to="/" />;
       }
@@ -68,7 +72,7 @@ function Login() {
                 <Button onClick={postLogin}>Sign In</Button>
             </Form>
             <Link to="/signup">Don't have an account?</Link>
-            { isError &&<Error>The username or password provided were incorrect!</Error> }
+            { isError &&<Error>{error}</Error> }
         </Card>
     );
 }
