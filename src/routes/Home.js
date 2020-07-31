@@ -8,6 +8,8 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
+import { Link } from "react-router-dom";
+
 const GridWrapper = styled.div`
   display: grid;
   grid-gap: 10px;
@@ -20,6 +22,9 @@ const GridWrapper = styled.div`
 
 export const Home = (props) => (
     <div className = "Home">
+        <Link to="/">Home  </Link>
+        <Link to="/Login">Log In  </Link>
+        <Link to="/Signup">Sign Up</Link>
         <div className = "Intro">
             <h1 id="introHeader"> 
                 Bondo<br></br>World Leading Mentorship Platform

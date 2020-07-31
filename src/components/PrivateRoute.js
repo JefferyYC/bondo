@@ -10,10 +10,11 @@ function PrivateRoute({ component: Component, ...rest }) {
         <Route 
             {...rest} 
             render={props =>
-                authTokens=="test" ? (
+                authTokens==="test" ? (
                     <Component {...props} />
                 ) : (
-                    <Redirect to="/login" />
+                    //Add an alert here later, says no access
+                    <Redirect to="/" />
                 )
             }
         />

@@ -9,14 +9,16 @@ function Login() {
 
     const [isLoggedIn, setLoggedIn] = useState(false);
     const [isError, setIsError] = useState(false);
-    const [userName, setUserName] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { authTokens, setAuthTokens } = useAuth();
     const [error, setError] = useState("");
 
     function postLogin() {
+      setLoggedIn(true);
+
       var postData = {
-        email: userName,
+        email: email,
         password: password
       };
 
@@ -46,7 +48,7 @@ function Login() {
 
     //if successfully logged in, redirect to home page
     if (isLoggedIn) {
-        return <Redirect to="/" />;
+        return <Redirect to="/platform" />;
       }
 
     return (
@@ -54,10 +56,10 @@ function Login() {
             <Logo src={logoImg} />
             <Form>
                 <Input
-                type="username"
-                value={userName}
+                type="email"
+                value={email}
                 onChange={e => {
-                    setUserName(e.target.value);
+                    setEmail(e.target.value);
                 }}
                 placeholder="email"
                 />
