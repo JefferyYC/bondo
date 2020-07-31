@@ -48,7 +48,7 @@ function Signup() {
             <Form>
                 <Input
                 type="username"
-                value={userName}
+                value={username}
                 onChange={e => {
                     setUserName(e.target.value);
                 }}
@@ -72,7 +72,7 @@ function Signup() {
                 />
                 <Button onClick={postSignUp}>Sign Up</Button>
             </Form>
-            { isError &&<Error>The username or password provided were incorrect!</Error> }
+            { isError &&<Error>The registration was unsuccessful!</Error> }
         </Card>
     );
 }

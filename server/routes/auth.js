@@ -48,13 +48,13 @@ router.post('/login', async (req, res) => {
     //Checking if user exists
     const user = await User.findOne({email: req.body.email});
     if (!user) {
-        return res.status(400).send("email is incorrect");
+        return res.status(400).send("email or password is incorrect");
     }
 
     //Check if password is correct
     const validPass = await bcrypt.compare(req.body.password, user.password)
     if (!validPass) {
-        return res.status(400).send("password is incorrect");
+        return res.status(400).send("email or password is incorrect");
     }
 
     //Create and assign a token
