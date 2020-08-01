@@ -4,6 +4,7 @@ import axios from 'axios';
 import logoImg from "../lyk.jpeg";
 import { Card, Logo, Form, Input, Button, Error } from "../components/AuthForm";
 import { useAuth } from "../context/auth";
+import Profilepicture from '../components/profile_pictures.jsx';
 
 function Login() {
 
@@ -15,8 +16,6 @@ function Login() {
     const [error, setError] = useState("");
 
     function postLogin() {
-      setLoggedIn(true);
-
       var postData = {
         email: email,
         password: password
@@ -52,30 +51,35 @@ function Login() {
       }
 
     return (
-        <Card>
-            <Logo src={logoImg} />
-            <Form>
-                <Input
-                type="email"
-                value={email}
-                onChange={e => {
-                    setEmail(e.target.value);
-                }}
-                placeholder="email"
-                />
-                <Input
-                type="password"
-                value={password}
-                onChange={e => {
-                    setPassword(e.target.value);
-                }}
-                placeholder="password"
-                />
-                <Button onClick={postLogin}>Sign In</Button>
-            </Form>
-            <Link to="/signup">Don't have an account?</Link>
-            { isError &&<Error>{error}</Error> }
-        </Card>
+      <div>
+        <Link to="/">
+          <Profilepicture height="60px" width="60px" url= {logoImg} top="20px" left="40px"/>
+        </Link>
+          <Card>
+              <Logo src={logoImg} />
+              <Form>
+                  <Input
+                  type="email"
+                  value={email}
+                  onChange={e => {
+                      setEmail(e.target.value);
+                  }}
+                  placeholder="email"
+                  />
+                  <Input
+                  type="password"
+                  value={password}
+                  onChange={e => {
+                      setPassword(e.target.value);
+                  }}
+                  placeholder="password"
+                  />
+                  <Button onClick={postLogin}>Sign In</Button>
+              </Form>
+              <Link to="/signup">Don't have an account?</Link>
+              { isError &&<Error>{error}</Error> }
+          </Card>
+        </div>
     );
 }
 
