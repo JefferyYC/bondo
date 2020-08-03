@@ -1,18 +1,25 @@
 import React from 'react';
-import { Button } from "../components/AuthForm";
-import { useAuth } from "../context/auth";
+import NavigationBar from "../components/NavigationBar"
+import "../css/Platform.css"
+import SearchBar from "../components/SearchBar"
 
 function Platform() {
-    const { setAuthTokens } = useAuth();
-
-    function logOut() {
-      setAuthTokens("test");
-    }
-
     return (
-        <div Platform>
-            <h1> Platform</h1>
-            <Button onClick={logOut}>Log out</Button>
+        <div className="Platform">
+            <NavigationBar></NavigationBar>
+            <div className="container">
+                <div className="filter">
+                    this is for filter
+                </div>
+                <div className="right">
+                    <div className="search">
+                        <SearchBar></SearchBar>
+                    </div>
+                    <div className="table">
+                        table
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
