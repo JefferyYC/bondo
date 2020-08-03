@@ -3,10 +3,13 @@ import styled from 'styled-components';
 import lyk from '../lyk.jpeg';
 import Profilepicture from '../components/profile_pictures.jsx';
 import '../css/Home.css';
+import '../css/navigation.css'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+
+import { Link } from "react-router-dom"
 
 const GridWrapper = styled.div`
   display: grid;
@@ -20,6 +23,11 @@ const GridWrapper = styled.div`
 
 export const Home = (props) => (
     <div className = "Home">
+        <Link to="/">
+            <Profilepicture height="60px" width="60px" url= {lyk} top="20px" left="40px"/>
+        </Link>
+        <Link to="/Login" id="login">Login</Link>
+        <Link to="/signup" id="signup">Sign Up</Link>
         <div className = "Intro">
             <h1 id="introHeader"> 
                 Bondo<br></br>World Leading Mentorship Platform

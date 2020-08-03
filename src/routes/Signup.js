@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import logoImg from "../lyk.jpeg";
 import { Card, Logo, Form, Input, Button, Error } from '../components/AuthForm';
+import Profilepicture from '../components/profile_pictures.jsx';
 
 function Signup() {
 
@@ -49,38 +50,43 @@ function Signup() {
   }
 
   return (
-    <Card>
-      <Logo src={logoImg} />
-      <Form>
-        <Input
-          type="email"
-          value={email}
-          onChange={e => {
-            setEmail(e.target.value);
-          }}
-          placeholder="email"
-          />
+    <div>
+      <Link to="/">
+        <Profilepicture height="60px" width="60px" url= {logoImg} top="20px" left="40px"/>
+      </Link>
+      <Card>
+        <Logo src={logoImg} />
+        <Form>
           <Input
-            type="username"
-            value={userName}
+            type="email"
+            value={email}
             onChange={e => {
-              setUserName(e.target.value);
+              setEmail(e.target.value);
             }}
-            placeholder="username"
-          />
-          <Input
-            type="password"
-            value={password}
-            onChange={e => {
-              setPassword(e.target.value);
-            }}
-            placeholder="password"
-          />
-        <Button onClick={register}>Sign Up</Button>
-      </Form>
-      <Link to="/login">Already have an account?</Link>
-      { isError &&<Error>{error}</Error> }
-    </Card>
+            placeholder="email"
+            />
+            <Input
+              type="username"
+              value={userName}
+              onChange={e => {
+                setUserName(e.target.value);
+              }}
+              placeholder="username"
+            />
+            <Input
+              type="password"
+              value={password}
+              onChange={e => {
+                setPassword(e.target.value);
+              }}
+              placeholder="password"
+            />
+          <Button onClick={register}>Sign Up</Button>
+        </Form>
+        <Link to="/login">Already have an account?</Link>
+        { isError &&<Error>{error}</Error> }
+      </Card>
+    </div>
   );
 }
 
