@@ -68,10 +68,8 @@
 
 #description_mentor_name {
     position: relative;
-    margin: 0 auto;
-    left: 15%;
+    text-align: center;
     color: blue;
-    
 }
 
 #description_mentor_content {
