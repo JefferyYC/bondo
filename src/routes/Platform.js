@@ -4,6 +4,7 @@ import "../css/Platform.css"
 import SearchBar from "../components/SearchBar"
 
 function Platform() {
+    const l = [a,b,c,d,e,f,g,h,i,j,k,l,m,n]
     return (
         <div className="Platform">
             <NavigationBar></NavigationBar>
@@ -16,7 +17,30 @@ function Platform() {
                         <SearchBar></SearchBar>
                     </div>
                     <div className="table">
-                        table
+                        <p>hello</p>
+                        <p>sassa</p>
+                        <p> asas</p>
+                        <p> asas</p>
+                        <p> asas</p>
+                        <p> asas</p>
+                        <p> asas</p>
+
+                        <p> asas</p>
+                        <p> asas</p>
+                        <p> asas</p>
+                        <p> asas</p>
+                        <p> asas</p>
+                        <p> asas</p>
+                        <p> asas</p>
+                        <p> asas</p>
+                        <p> asas</p>
+                        <p> asas</p>
+                        <p> asas</p>
+                        <p> asas</p>
+                        <p> asas</p>
+                        <p> asas</p>
+                        <p> asas</p>
+
                     </div>
                 </div>
             </div>
