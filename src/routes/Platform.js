@@ -2,9 +2,12 @@ import React from 'react';
 import NavigationBar from "../components/NavigationBar"
 import "../css/Platform.css"
 import SearchBar from "../components/SearchBar"
+import lyk from '../lyk.jpeg';
+import MentorPicRec from '../components/MentorPicRec.js';
+import { Link } from "react-router-dom"
+
 
 function Platform() {
-    const l = [a,b,c,d,e,f,g,h,i,j,k,l,m,n]
     return (
         <div className="Platform">
             <NavigationBar></NavigationBar>
@@ -17,30 +20,7 @@ function Platform() {
                         <SearchBar></SearchBar>
                     </div>
                     <div className="table">
-                        <p>hello</p>
-                        <p>sassa</p>
-                        <p> asas</p>
-                        <p> asas</p>
-                        <p> asas</p>
-                        <p> asas</p>
-                        <p> asas</p>
-
-                        <p> asas</p>
-                        <p> asas</p>
-                        <p> asas</p>
-                        <p> asas</p>
-                        <p> asas</p>
-                        <p> asas</p>
-                        <p> asas</p>
-                        <p> asas</p>
-                        <p> asas</p>
-                        <p> asas</p>
-                        <p> asas</p>
-                        <p> asas</p>
-                        <p> asas</p>
-                        <p> asas</p>
-                        <p> asas</p>
-
+                        <MentorPicRec data="This is a test test te  is a test test te  is a test test te  is a test test te  is a test test te  is a test test te  is a test test te st te  is a test test te st te  is a test test te st te  is a test test te  " height="300px" width="250px" url= {lyk}/>
                     </div>
                 </div>
             </div>
