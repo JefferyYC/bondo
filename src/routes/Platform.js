@@ -16,10 +16,7 @@ function Platform() {
         <div Platform>
             <h1> Platform</h1>
             <Button onClick={logOut}>Log out</Button>
-            <Link to="/mentorprofile">
-                <MentorPicRec data="This is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a test" height="300px" width="250px" url= {lyk}/>
-            </Link>
-            
+            <MentorPicRec data="This is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a test" height="300px" width="250px" url= {lyk}/>
         </div>
     );
 }

@@ -26,7 +26,7 @@
     height: 250px;
     top: 10%;
     left: 45%;
-    overflow: scroll;
+    overflow-y: scroll;
     border: 5px solid red;
 }
 
@@ -73,13 +73,7 @@
 }
 
 #description_mentor_content {
-    position: relative;
-    align-self: center;
-    margin-left: auto;
-    margin-right: auto;
     color: red;
-    overflow-wrap: break-all;
-    overflow: scroll;
 }
 
 

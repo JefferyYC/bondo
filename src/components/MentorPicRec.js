@@ -19,9 +19,8 @@ function MentorPicRec(props) {
             <div className="profileblkpic" style={style2}></div>
             <h3 id="description_mentor_name">Yukai Luo</h3>
             <p id="description_mentor_content">
-            {props.data}
+                {props.data}
             </p>
-            
         </div>
         
     )
