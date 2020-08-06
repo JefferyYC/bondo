@@ -9,6 +9,7 @@ const cors = require('cors');
 const authRoute = require('./routes/auth');
 const { request } = require('express');
 const postRoute = require('./routes/posts');
+const mentorRoute = require('./routes/mentor')
 
 dotenv.config();
 
@@ -24,5 +25,6 @@ app.use(express.json());
 //Route Middleware
 app.use('/api/user', authRoute);
 app.use('/api/posts', postRoute);
+app.use('/api/mentor', mentorRoute);
 
 app.listen(5000, () => console.log('Server up and running'));
