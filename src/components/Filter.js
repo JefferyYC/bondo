@@ -1,77 +1,71 @@
-import React, {useState} from "react";
 import styled from 'styled-components';
-import axios from 'axios';
-import { Input } from "../components/AuthForm";
+import React from 'react'
+import {Component } from 'react';
 
 
 const Block = styled.div`
     position: relative;
     width: 400px;
     height: 1000px;
-    overflow-y: scroll;
     border: 5px solid red;
 `;
 
-function Filter() {
-  const [error, setError] = useState("Sign Up Failed...")
-  const [isError, setIsError] = useState(false);
-  const [dataList, setDataList] = useState([]);
+const OPTIONS = ["SWE", "Consulting", "HR"];
 
-  function postFilter() {
-    var postData = {
-      isEmpty: true
-    };
+console.log(...OPTIONS)
 
-    const config = {
-      headers: {
-        'Content-Type': 'application/json'
+
+class Filter extends Component {
+  state = {
+    //turn [1,2,3] into {1:False, 2:False, 3:False}
+    checkboxes: OPTIONS.reduce(
+      (options, option) => ({
+        ...options,
+        [option]: false
+      }),
+      {}
+    )
+  };
+
+  handleCheckboxChange = changeEvent => {
+    const { name } = changeEvent.target;
+    //const name = changeEvent.target.name;
+
+    this.setState(prevState => ({
+      checkboxes: {
+        ...prevState.checkboxes,
+        [name]: !prevState.checkboxes[name]
       }
-    };
+    }));
 
-    axios.post("http://localhost:5000/api/mentor", postData, config)
-    .then(result => {
-      if (result.status === 200) {
-        console.log("successful load of filter result!")
-        setDataList(result.data)
-        // Testing
-        console.log(result.dataList)
-      } else {
-        console.log("unsucessful load of filter result!")
-        setError(result.data)
-        setIsError(true)
-      }
-    }).catch(e => {
-      console.log("Error!")
-      setError("Fail to return filter data from backend!")
-      setIsError(true);
-    });
-  }
+    console.log(this.state.checkboxes[name])
+  };
 
-  return(
-    <Block>
-      <h1>Filter your mentors!</h1>
-        <label class="container">One
-            <Input type="checkbox" checked="checked"></Input>
-            <span class="checkmark"></span>
-        </label>
-
-        <label class="container">Two
-            <Input type="checkbox"></Input>
-            <span class="checkmark"></span>
-        </label>
-
-        <label class="container">Three
-            <Input type="checkbox"></Input>
-            <span class="checkmark"></span>
-        </label>
-
-        <label class="container">Four
-            <Input type="checkbox"></Input>
-            <span class="checkmark"></span>
-        </label> 
-    </Block>
-      
+  createCheckbox = option => (
+    <div className="form-check">
+      <label>
+        <input
+          type="checkbox"
+          name={option}
+          checked={this.state.checkboxes[option]}
+          onChange={this.handleCheckboxChange}
+          className="form-check-input"
+        />
+        {option}
+      </label>
+    </div>
   )
+
+
+  render() {
+    return (
+      <Block>
+        <h1> Filter </h1>
+        <p>Profession: </p>
+        {OPTIONS.map(this.createCheckbox)}
+      </Block>
+    )
+  };
 }
 
 export default Filter;

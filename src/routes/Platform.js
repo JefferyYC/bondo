@@ -25,7 +25,8 @@ function Platform() {
       };
     
     // Request for mentor data on load
-    axios.post("http://localhost:5000/api/mentor", postData, config)
+    function tempt() {
+      axios.post("http://localhost:5000/api/mentor", postData, config)
     .then(result => {
       if (result.status === 200) {
         console.log("successful load mentor data!")
@@ -43,13 +44,13 @@ function Platform() {
       setIsError(true);
     });
 
+    }
+    
+
     return (
         <div className="Platform">
             <NavigationBar></NavigationBar>
             <div className="container">
-                {/* <div className="filter">
-                    this is for filter
-                </div> */}
                 <Filter></Filter>
                 <div className="right">
                     <div className="search">
