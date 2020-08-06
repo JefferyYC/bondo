@@ -64,8 +64,6 @@ function SearchBar() {
     });
   }
 
-
-
   return(
     <Bar>
       <Input defaultValue="Search For A Mentor" type="text"></Input>
