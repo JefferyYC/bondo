@@ -3,7 +3,7 @@ const User = require('../model/User');
 
 
 router.post('/', async (req, res) => {
-    if (req.body.empty) {
+    if (req.body.isEmpty) {
         const total = await User.countDocuments({}, function(err, count){
             console.log(err);
         });
