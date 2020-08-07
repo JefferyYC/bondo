@@ -30,7 +30,8 @@ function Platform() {
     
     // const list;
     // Request for mentor data on load
-    axios.post("http://localhost:5000/api/mentor", postData, config)
+    function tempt() {
+      axios.post("http://localhost:5000/api/mentor", postData, config)
     .then(result => {
       if (result.status === 200) {
         console.log("successful load mentor data!")
@@ -50,7 +51,7 @@ function Platform() {
       setError("Fail to return data from backend")
       setIsError(true);
     });
-
+  }
     // const list0 = dataList[0];
     // const list1 = dataList[1];
     if (this.state.dataList === null) return null;
@@ -58,9 +59,6 @@ function Platform() {
         <div className="Platform">
             <NavigationBar></NavigationBar>
             <div className="container">
-                {/* <div className="filter">
-                    this is for filter
-                </div> */}
                 <Filter></Filter>
                 <div className="right">
                     <div className="search">

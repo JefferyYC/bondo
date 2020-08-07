@@ -1,77 +1,103 @@
-import React, {useState} from "react";
 import styled from 'styled-components';
-import axios from 'axios';
-import { Input } from "../components/AuthForm";
+import React from 'react'
+import {Component } from 'react';
 
 
 const Block = styled.div`
     position: relative;
     width: 400px;
     height: 1000px;
-    overflow-y: scroll;
     border: 5px solid red;
 `;
 
-function Filter() {
-  const [error, setError] = useState("Sign Up Failed...")
-  const [isError, setIsError] = useState(false);
-  const [dataList, setDataList] = useState([]);
+const PROFESSION = ["SWE", "Consulting", "HR"];
+const EXPERIENCE = ["Entry-Level", "Manager"]
 
-  function postFilter() {
-    var postData = {
-      isEmpty: true
-    };
 
-    const config = {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    };
+class Filter extends Component {
+  state = {
+    //turn [1,2,3] into {1:False, 2:False, 3:False}
+    professions: PROFESSION.reduce(
+      (options, option) => ({
+        ...options,
+        [option]: false
+      }),
+      {}
+    ),
+    experiences: EXPERIENCE.reduce(
+      (options, option) => ({
+        ...options,
+        [option]: false
+      }),
+      {}
+    )  
+  };
 
-    axios.post("http://localhost:5000/api/mentor", postData, config)
-    .then(result => {
-      if (result.status === 200) {
-        console.log("successful load of filter result!")
-        setDataList(result.data)
-        // Testing
-        console.log(result.dataList)
-      } else {
-        console.log("unsucessful load of filter result!")
-        setError(result.data)
-        setIsError(true)
-      }
-    }).catch(e => {
-      console.log("Error!")
-      setError("Fail to return filter data from backend!")
-      setIsError(true);
-    });
+  handleCheckboxChange = list => {
+    switch(list){
+      case this.state.professions:
+        return changeEvent => {
+          const { name } = changeEvent.target;
+      
+          this.setState(prevState => ({
+            professions: {
+              ...prevState.professions,
+              [name]: !prevState.professions[name]
+            }
+          }));
+        };
+        break
+      
+      case this.state.experiences:
+        return changeEvent => {
+          const { name } = changeEvent.target;
+      
+          this.setState(prevState => ({
+            experiences: {
+              ...prevState.experiences,
+              [name]: !prevState.experiences[name]
+            }
+          }));
+        };
+        break
+
+        default:
+          console.log("not found")
+    }
   }
 
-  return(
-    <Block>
-      <h1>Filter your mentors!</h1>
-        <label class="container">One
-            <Input type="checkbox" checked="checked"></Input>
-            <span class="checkmark"></span>
-        </label>
 
-        <label class="container">Two
-            <Input type="checkbox"></Input>
-            <span class="checkmark"></span>
-        </label>
+  createCheckbox = list => {
+    return option => {
+    return <div className="form-check">
+      <label>
+        <input
+          type="checkbox"
+          name={option}
+          checked={list[option]}
+          onChange={this.handleCheckboxChange(list)}
+          className="form-check-input"
+        />
+        {option}
+      </label>
+    </div>
+    }
+  };
+  
 
-        <label class="container">Three
-            <Input type="checkbox"></Input>
-            <span class="checkmark"></span>
-        </label>
 
-        <label class="container">Four
-            <Input type="checkbox"></Input>
-            <span class="checkmark"></span>
-        </label> 
-    </Block>
-      
-  )
+
+  render() {
+    return (
+      <Block>
+        <h1> Filter </h1>
+        <p>Profession: </p>
+        {PROFESSION.map(this.createCheckbox(this.state.professions))}
+        <p>Experience: </p>
+        {EXPERIENCE.map(this.createCheckbox(this.state.experiences))}
+      </Block>
+    )
+  };
 }
 
 export default Filter;
