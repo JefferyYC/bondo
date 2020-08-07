@@ -10,51 +10,81 @@ const Block = styled.div`
     border: 5px solid red;
 `;
 
-const OPTIONS = ["SWE", "Consulting", "HR"];
-
-console.log(...OPTIONS)
+const PROFESSION = ["SWE", "Consulting", "HR"];
+const EXPERIENCE = ["Entry-Level", "Manager"]
 
 
 class Filter extends Component {
   state = {
     //turn [1,2,3] into {1:False, 2:False, 3:False}
-    checkboxes: OPTIONS.reduce(
+    professions: PROFESSION.reduce(
       (options, option) => ({
         ...options,
         [option]: false
       }),
       {}
-    )
+    ),
+    experiences: EXPERIENCE.reduce(
+      (options, option) => ({
+        ...options,
+        [option]: false
+      }),
+      {}
+    )  
   };
 
-  handleCheckboxChange = changeEvent => {
-    const { name } = changeEvent.target;
-    //const name = changeEvent.target.name;
+  handleCheckboxChange = list => {
+    switch(list){
+      case this.state.professions:
+        return changeEvent => {
+          const { name } = changeEvent.target;
+      
+          this.setState(prevState => ({
+            professions: {
+              ...prevState.professions,
+              [name]: !prevState.professions[name]
+            }
+          }));
+        };
+        break
+      
+      case this.state.experiences:
+        return changeEvent => {
+          const { name } = changeEvent.target;
+      
+          this.setState(prevState => ({
+            experiences: {
+              ...prevState.experiences,
+              [name]: !prevState.experiences[name]
+            }
+          }));
+        };
+        break
 
-    this.setState(prevState => ({
-      checkboxes: {
-        ...prevState.checkboxes,
-        [name]: !prevState.checkboxes[name]
-      }
-    }));
+        default:
+          console.log("not found")
+    }
+  }
 
-    console.log(this.state.checkboxes[name])
-  };
 
-  createCheckbox = option => (
-    <div className="form-check">
+  createCheckbox = list => {
+    return option => {
+    return <div className="form-check">
       <label>
         <input
           type="checkbox"
           name={option}
-          checked={this.state.checkboxes[option]}
-          onChange={this.handleCheckboxChange}
+          checked={list[option]}
+          onChange={this.handleCheckboxChange(list)}
           className="form-check-input"
         />
         {option}
       </label>
     </div>
-  )
+    }
+  };
+  
+
 
 
   render() {
@@ -62,7 +92,9 @@ class Filter extends Component {
       <Block>
         <h1> Filter </h1>
         <p>Profession: </p>
-        {OPTIONS.map(this.createCheckbox)}
+        {PROFESSION.map(this.createCheckbox(this.state.professions))}
+        <p>Experience: </p>
+        {EXPERIENCE.map(this.createCheckbox(this.state.experiences))}
       </Block>
     )
   };
