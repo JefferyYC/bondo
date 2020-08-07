@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import React from 'react'
+import React, {useState} from 'react'
 import {Component } from 'react';
+import axios from 'axios';
 
 
 const Block = styled.div`
@@ -8,6 +9,18 @@ const Block = styled.div`
     width: 400px;
     height: 1000px;
     border: 5px solid red;
+`;
+
+const SearchButton = styled.button`
+  background: linear-gradient(to bottom, #6371c7, #5563c1);
+  border-color: #3f4eae;
+  border-radius: 3px;
+  margin: 0.5em;
+  padding: 1rem;
+  color: white;
+  font-weight: 700;
+  width: 50%;
+  font-size: 1rem;
 `;
 
 const PROFESSION = ["SWE", "Consulting", "HR"];
@@ -30,8 +43,46 @@ class Filter extends Component {
         [option]: false
       }),
       {}
-    )  
+    ),
+    dataList: [],
   };
+
+  
+
+  
+
+  postSearch = (prof, exp) => {
+    var postData = {
+      isEmpty: true,
+      professions: prof,
+      experience: exp
+    };
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    axios.post("http://localhost:5000/api/mentor", postData, config)
+    .then(result => {
+    if (result.status === 200) {
+      console.log("successful load of filter search result!")
+      this.setState(() => ({
+        dataList: result.data.users
+      }));
+    } else {
+      console.log("unsucessful load of filter search result!")
+      // this.setState(() => ({
+      //   err: result.data.error
+      // }));
+      // setIsError(true)
+    }
+    }).catch(e => {
+    console.log("Error!")
+    // console.log(e.response.data)
+    // setError(e.response.data)
+    // setIsError(true);
+    });
+  }
 
   handleCheckboxChange = list => {
     switch(list){
@@ -85,6 +136,7 @@ class Filter extends Component {
   };
   
 
+  
 
 
   render() {
@@ -95,6 +147,7 @@ class Filter extends Component {
         {PROFESSION.map(this.createCheckbox(this.state.professions))}
         <p>Experience: </p>
         {EXPERIENCE.map(this.createCheckbox(this.state.experiences))}
+        <SearchButton onClick={() => {this.postSearch(PROFESSION, EXPERIENCE)}}>Apply filters</SearchButton>
       </Block>
     )
   };

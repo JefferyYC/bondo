@@ -54,7 +54,7 @@ function Platform() {
   }
     // const list0 = dataList[0];
     // const list1 = dataList[1];
-    if (this.state.dataList === null) return null;
+    // if (this.state.dataList === null) return null;
     return (
         <div className="Platform">
             <NavigationBar></NavigationBar>
@@ -79,7 +79,7 @@ function Platform() {
                             <MentorPicRec data="This is a test test te  is a test test te  is a test test te  is a test test te  is a test test te  is a test test te  is a test test te st te  is a test test te st te  is a test test te st te  is a test test te  " height="300px" width="250px" url= {lyk}/>
                         </div> */}
                         <div>
-                          {this.state.dataList.map(user => <MentorPicRec data={user.email}height="300px" width="250px" url= {lyk}/>)}
+                          {dataList.map(user => <MentorPicRec data={user.email}height="300px" width="250px" url= {lyk}/>)}
                         </div>
                     </div>
                 </div>
