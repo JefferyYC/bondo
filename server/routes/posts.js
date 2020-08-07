@@ -11,5 +11,4 @@ router.get('/', verify, (req, res) => {
 });
 
 
-
 module.exports = router;

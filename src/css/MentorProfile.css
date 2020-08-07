@@ -21,11 +21,10 @@
 }
 
 .profileblk {
+    margin: 10px;
     position: relative;
     width: 200px;
     height: 250px;
-    top: 10%;
-    left: 45%;
     overflow-y: scroll;
     border: 5px solid red;
 }

@@ -4,20 +4,18 @@ import axios from 'axios';
 import logoImg from "../lyk.jpeg";
 import { Card, Logo, Form, Input, Button, Error } from "../components/AuthForm";
 import { useAuth } from "../context/auth";
-import Profilepicture from '../components/profile_pictures.jsx';
 
 function Login() {
 
     const [isLoggedIn, setLoggedIn] = useState(false);
     const [isError, setIsError] = useState(false);
-    const [email, setEmail] = useState("");
+    const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const { authTokens, setAuthTokens } = useAuth();
-    const [error, setError] = useState("");
 
     function postLogin() {
       var postData = {
-        email: email,
+        email: userName,
         password: password
       };
 
@@ -35,51 +33,43 @@ function Login() {
           setLoggedIn(true);
         } else {
           console.log("unsuccessful")
-          setError(result.data);
           setIsError(true);
         }
       }).catch(e => {
         console.log("error")
-        setError(e.response.data)
         setIsError(true);
       });
     }
 
-    //if successfully logged in, redirect to home page
     if (isLoggedIn) {
-        return <Redirect to="/platform" />;
+        return <Redirect to="/" />;
       }
 
     return (
-      <div>
-        <Link to="/">
-          <Profilepicture height="60px" width="60px" url= {logoImg} top="20px" left="40px"/>
-        </Link>
-          <Card>
-              <Logo src={logoImg} />
-              <Form>
-                  <Input
-                  type="email"
-                  value={email}
-                  onChange={e => {
-                      setEmail(e.target.value);
-                  }}
-                  placeholder="email"
-                  />
-                  <Input
-                  type="password"
-                  value={password}
-                  onChange={e => {
-                      setPassword(e.target.value);
-                  }}
-                  placeholder="password"
-                  />
-                  <Button onClick={postLogin}>Sign In</Button>
-              </Form>
-              <Link to="/signup">Don't have an account?</Link>
-              { isError &&<Error>{error}</Error> }
-          </Card>
-        </div>
+        <Card>
+            <Logo src={logoImg} />
+            <Form>
+                <Input
+                type="username"
+                value={userName}
+                onChange={e => {
+                    setUserName(e.target.value);
+                }}
+                placeholder="email"
+                />
+                <Input
+                type="password"
+                value={password}
+                onChange={e => {
+                    setPassword(e.target.value);
+                }}
+                placeholder="password"
+                />
+                <Button onClick={postLogin}>Sign In</Button>
+            </Form>
+            <Link to="/signup">Don't have an account?</Link>
+            { isError &&<Error>The username or password provided were incorrect!</Error> }
+        </Card>
     );
 }
 
