@@ -6,6 +6,7 @@ import SearchBar from "../components/SearchBar"
 import Filter from "../components/Filter"
 import lyk from '../lyk.jpeg';
 import MentorPicRec from '../components/MentorPicRec.js';
+import { Container, Row, Col } from 'react-bootstrap';
 // import cors from 'cors';
 // import express from 'express';
 
@@ -30,7 +31,7 @@ function Platform() {
     
     // const list;
     // Request for mentor data on load
-    function tempt() {
+    window.onload = function() {
       axios.post("http://localhost:5000/api/mentor", postData, config)
     .then(result => {
       if (result.status === 200) {
@@ -52,40 +53,32 @@ function Platform() {
       setIsError(true);
     });
   }
-    // const list0 = dataList[0];
-    // const list1 = dataList[1];
-    if (this.state.dataList === null) return null;
-    return (
-        <div className="Platform">
-            <NavigationBar></NavigationBar>
-            <div className="container">
-                <Filter></Filter>
-                <div className="right">
-                    <div className="search">
-                        <SearchBar></SearchBar>
-                    </div>
-                    <div className="right_bottom">
-                      <h1 style={{textAlign:"center"}}>Find your mentors!</h1>
-                        {/* <div className="table">
-                            <MentorPicRec data= {dataList[0].email} height="300px" width="250px" url= {lyk}/>
-                            <MentorPicRec data= {dataList[1].email} height="300px" width="250px" url= {lyk}/>
-                        </div>
-                        <div className="table">
-                            <MentorPicRec data="This is a test test te  is a test test te  is a test test te  is a test test te  is a test test te  is a test test te  is a test test te st te  is a test test te st te  is a test test te st te  is a test test te  " height="300px" width="250px" url= {lyk}/>
-                            <MentorPicRec data="This is a test test te  is a test test te  is a test test te  is a test test te  is a test test te  is a test test te  is a test test te st te  is a test test te st te  is a test test te st te  is a test test te  " height="300px" width="250px" url= {lyk}/>
-                        </div>
-                        <div className="table">
-                            <MentorPicRec data="This is a test test te  is a test test te  is a test test te  is a test test te  is a test test te  is a test test te  is a test test te st te  is a test test te st te  is a test test te st te  is a test test te  " height="300px" width="250px" url= {lyk}/>
-                            <MentorPicRec data="This is a test test te  is a test test te  is a test test te  is a test test te  is a test test te  is a test test te  is a test test te st te  is a test test te st te  is a test test te st te  is a test test te  " height="300px" width="250px" url= {lyk}/>
-                        </div> */}
-                        <div>
-                          {this.state.dataList.map(user => <MentorPicRec data={user.email}height="300px" width="250px" url= {lyk}/>)}
-                        </div>
-                    </div>
+
+  return (
+    <div className="Platform">
+        <NavigationBar></NavigationBar>
+        <div className="container">
+            <Filter></Filter>
+            <div className="right">
+                <div className="search">
+                    <SearchBar></SearchBar>
+                </div>
+                <div className="right_bottom">
+                  <h1 style={{textAlign:"center"}}>Find your mentors!</h1>
+                  <Container className="mentors">
+                    <Row xs={2} md={2}>
+                      {dataList.map(user => 
+                        <Col className="card">
+                          <MentorPicRec data={user.email}height="300px" width="250px" url= {lyk}/>
+                        </Col>
+                      )}
+                    </Row>
+                  </Container>
                 </div>
             </div>
         </div>
-    );
+    </div>
+  );
 }
 
 export default Platform;
