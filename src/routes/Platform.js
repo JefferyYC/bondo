@@ -62,7 +62,7 @@ function Platform() {
             <Filter></Filter>
             <div className="right">
                 <div className="search">
-                    <SearchBar></SearchBar>
+                    <SearchBar setDataList={setDataList}></SearchBar>
                 </div>
                 <div className="right_bottom">
                   <h1 style={{textAlign:"center"}}>Find your mentors!</h1>

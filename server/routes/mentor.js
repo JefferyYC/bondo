@@ -11,9 +11,15 @@ router.post('/', async (req, res) => {
             console.log(err);
         });
         return res.send({remaining: total-6, users: users})
-    } else {
-        return res.send("not empty")
+    } else {    
+        // const temp = await User.createIndex( { name: "text", email: "text" } )   
+        const users = await User.find(
+            { $text: { $search: req.body.queryString } },   
+            { score: { $meta: "textScore" } }, function(err, res) {
+                console.log(err)
+            }).sort( { score: { $meta: "textScore" } })
+        return res.send({remaining: 100, users: users})
     }
 })
 
-module.exports = router
+module.exports = router     

@@ -29,18 +29,18 @@ const Bar = styled.div`
   width: 100%;
 `;
 
-function SearchBar() {
+function SearchBar(props) {
   const [error, setError] = useState("Sign Up Failed...")
   const [isError, setIsError] = useState(false);
-  const [dataList, setDataList] = useState([]);
-
+  const [userInput, setUserInput] = useState("");
   function postSearch() {
     var postData = {
-      isEmpty: true
-    };
+      isEmpty: false,
+      queryString: userInput
+    };  
 
     const config = {
-      headers: {
+      headers: {  
         'Content-Type': 'application/json'
       }
     };
@@ -49,24 +49,33 @@ function SearchBar() {
     .then(result => {
       if (result.status === 200) {
         console.log("successful load of search result!")
-        setDataList(result.data)
+        console.log(props.setDataList)
+        props.setDataList(result.data.users)
         // Testing
+        console.log(result.data.users)
         console.log(result.dataList)
       } else {
         console.log("unsucessful load of search result!")
-        setError(result.data)
+        setError(result.data.users)
         setIsError(true)
       }
     }).catch(e => {
-      console.log("Error!")
-      setError(e.response.data)
+      console.log(e )
+      setError("Fail to return data from backend for searchBar")
       setIsError(true);
     });
   }
 
   return(
     <Bar>
-      <Input defaultValue="Search For A Mentor" type="text"></Input>
+      <Input 
+      defaultValue="Search For A Mentor" 
+      type="text"
+      value={userInput}
+      onChange={e => {
+          setUserInput(e.target.value);
+      }}>
+      </Input>
       <SearchButton onClick={postSearch}>Search</SearchButton>
     </Bar>
       
