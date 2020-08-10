@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import React, {useState} from 'react'
-import {Component } from 'react';
+import { Component } from 'react';
 import axios from 'axios';
 
 
@@ -25,6 +25,7 @@ const SearchButton = styled.button`
 
 const PROFESSION = ["SWE", "Consulting", "HR"];
 const EXPERIENCE = ["Entry-Level", "Manager"]
+const NAMES = ["Jeffery", "lyk"]
 
 
 class Filter extends Component {
@@ -44,18 +45,19 @@ class Filter extends Component {
       }),
       {}
     ),
-    dataList: [],
+    names: NAMES.reduce(
+      (options, option) => ({
+        ...options,
+        [option]: false
+      }),
+      {}
+    ),    
   };
 
-  
-
-  
-
-  postSearch = (prof, exp) => {
+  postSearch = (n) => {
     var postData = {
-      isEmpty: true,
-      professions: prof,
-      experience: exp
+      isEmpty: false,
+      names: n
     };
     const config = {
       headers: {
@@ -66,21 +68,12 @@ class Filter extends Component {
     .then(result => {
     if (result.status === 200) {
       console.log("successful load of filter search result!")
-      this.setState(() => ({
-        dataList: result.data.users
-      }));
+      this.props.setDataList(result.data.users)
     } else {
       console.log("unsucessful load of filter search result!")
-      // this.setState(() => ({
-      //   err: result.data.error
-      // }));
-      // setIsError(true)
     }
     }).catch(e => {
-    console.log("Error!")
-    // console.log(e.response.data)
-    // setError(e.response.data)
-    // setIsError(true);
+    console.log(e)
     });
   }
 
@@ -97,7 +90,6 @@ class Filter extends Component {
             }
           }));
         };
-        break
       
       case this.state.experiences:
         return changeEvent => {
@@ -110,13 +102,23 @@ class Filter extends Component {
             }
           }));
         };
-        break
+
+      case this.state.names:
+        return changeEvent => {
+          const { name } = changeEvent.target;
+      
+          this.setState(prevState => ({
+            names: {
+              ...prevState.names,
+              [name]: !prevState.names[name]
+            }
+          }));
+        };
 
         default:
           console.log("not found")
     }
   }
-
 
   createCheckbox = list => {
     return option => {
@@ -135,10 +137,6 @@ class Filter extends Component {
     }
   };
   
-
-  
-
-
   render() {
     return (
       <Block>
@@ -147,7 +145,9 @@ class Filter extends Component {
         {PROFESSION.map(this.createCheckbox(this.state.professions))}
         <p>Experience: </p>
         {EXPERIENCE.map(this.createCheckbox(this.state.experiences))}
-        <SearchButton onClick={() => {this.postSearch(PROFESSION, EXPERIENCE)}}>Apply filters</SearchButton>
+        <p>Names: </p>
+        {NAMES.map(this.createCheckbox(this.state.names))}
+        <SearchButton onClick={() => {this.postSearch(NAMES)}}>Apply filters</SearchButton>
       </Block>
     )
   };
