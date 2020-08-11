@@ -2,8 +2,16 @@ import React, { useState } from "react";
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import logoImg from "../lyk.jpeg";
-import { Card, Logo, Form, Input, Button, Error } from '../components/AuthForm';
+import { Card, Logo, Input, Button, Error } from '../components/AuthForm';
 import Profilepicture from '../components/profile_pictures.jsx';
+import styled from 'styled-components';
+
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
 
 function Signup() {
 
@@ -14,7 +22,8 @@ function Signup() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
-  function register() {
+  function register(event) {
+    event.preventDefault();
     var postData = {
       name: userName,
       email: email,
@@ -56,7 +65,7 @@ function Signup() {
       </Link>
       <Card>
         <Logo src={logoImg} />
-        <Form>
+        <Form onSubmit={(e) => register(e)}>
           <Input
             type="email"
             value={email}
@@ -81,7 +90,7 @@ function Signup() {
               }}
               placeholder="password"
             />
-          <Button onClick={register}>Sign Up</Button>
+          <Button type="submit">Sign Up</Button>
         </Form>
         <Link to="/login">Already have an account?</Link>
         { isError &&<Error>{error}</Error> }

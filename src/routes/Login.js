@@ -2,8 +2,17 @@ import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import axios from 'axios';
 import logoImg from "../lyk.jpeg";
-import { Card, Logo, Form, Input, Button, Error } from "../components/AuthForm";
+import { Card, Logo, Input, Button, Error } from "../components/AuthForm";
 import { useAuth } from "../context/auth";
+import styled from 'styled-components';
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+
 
 function Login() {
 
@@ -13,7 +22,8 @@ function Login() {
     const [password, setPassword] = useState("");
     const { authTokens, setAuthTokens } = useAuth();
 
-    function postLogin() {
+    function postLogin(event) {
+      event.preventDefault();
       var postData = {
         email: userName,
         password: password
@@ -48,7 +58,7 @@ function Login() {
     return (
         <Card>
             <Logo src={logoImg} />
-            <Form>
+            <Form onSubmit={(e) => postLogin(e)}>
                 <Input
                 type="username"
                 value={userName}
@@ -65,7 +75,7 @@ function Login() {
                 }}
                 placeholder="password"
                 />
-                <Button onClick={postLogin}>Sign In</Button>
+                <Button type="submit">Sign In</Button>
             </Form>
             <Link to="/signup">Don't have an account?</Link>
             { isError &&<Error>The username or password provided were incorrect!</Error> }
