@@ -59,7 +59,7 @@ function Platform() {
     <div className="Platform">
         <NavigationBar></NavigationBar>
         <div className="container">
-            <Filter></Filter>
+            <Filter setDataList={setDataList}></Filter>
             <div className="right">
                 <div className="search">
                     <SearchBar setDataList={setDataList}></SearchBar>

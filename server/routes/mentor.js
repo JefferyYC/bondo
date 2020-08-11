@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const User = require('../model/User');
+const { DocumentQuery } = require('mongoose');
 
 
 router.post('/', async (req, res) => {
@@ -19,7 +20,7 @@ router.post('/', async (req, res) => {
                 console.log(err)
             }).sort( { score: { $meta: "textScore" } })
         return res.send({remaining: 100, users: users})
-    }
+    } 
 })
 
 module.exports = router     
