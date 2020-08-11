@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import NavigationBar from "../components/NavigationBar"
 import "../css/Platform.css"
 import axios from 'axios';
@@ -7,21 +7,22 @@ import Filter from "../components/Filter"
 import lyk from '../lyk.jpeg';
 import MentorPicRec from '../components/MentorPicRec.js';
 import { Container, Row, Col } from 'react-bootstrap';
-// import cors from 'cors';
-// import express from 'express';
-
-// var app = express();
-// //Bypass SOP
-// app.use(cors());
+import Pagination from '../components/Pagination.js'
 
 function Platform() {
-    const [error, setError] = useState("Load Mentor Data Failed...")
-    const [isError, setIsError] = useState(false); 
     const [dataList, setDataList] = useState([]);
     const [count, setCount] = useState(0);
-    
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postPerPage] = useState(6);
+
+    const paginate = (n) => {
+      setCurrentPage(n);
+    }
+
     var postData = {
-        isEmpty: true
+        isEmpty: true,
+        currentPage: currentPage,
+        postPerPage: postPerPage
     };
     const config = {
         headers: {
@@ -29,30 +30,23 @@ function Platform() {
         }
       };
     
-    // const list;
-    // Request for mentor data on load
-    window.onload = function() {
+    //make a request everytime currentPage changes
+    useEffect(() => {
+      console.log("activate")
       axios.post("http://localhost:5000/api/mentor", postData, config)
-    .then(result => {
-      if (result.status === 200) {
-        console.log("successful load mentor data!")
-        setCount(result.data.remaining)
-        setDataList(result.data.users)
-        // Testing
-        console.log(result.data.users);
-        console.log(dataList);
-        // list = result.data.users; 
-      } else {
-        console.log("unsucessful load mentor data")
-        setError(result.data)
-        setIsError(true);
-      }
-    }).catch(e => {
-      console.log("Error when load mentor data!")
-      setError("Fail to return data from backend")
-      setIsError(true);
-    });
-  }
+      .then(result => {
+        if (result.status === 200) {
+          console.log("successful load mentor data!")
+          setCount(result.data.total)
+          setDataList(result.data.users)
+          console.log(dataList)
+        } else {
+          console.log("unsucessful load mentor data")
+        }
+      }).catch(e => {
+        console.log("Error when load mentor data!")
+      });
+    }, [currentPage]);
 
 
   return (
@@ -75,7 +69,7 @@ function Platform() {
                       )}
                     </Row>
                   </Container>
-
+                  <Pagination postPerPage={postPerPage} totalPost={count} paginate={paginate} ></Pagination>
                 </div>
             </div>
         </div>
