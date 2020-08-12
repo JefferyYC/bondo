@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import styled from 'styled-components';
 import axios from 'axios';
+import { Form } from "../components/AuthForm";
+
 
 const Input = styled.input`
   padding: 0.5em;
@@ -23,7 +25,7 @@ const SearchButton = styled.button`
   font-size: 1rem;
 `;
 
-const Bar = styled.div`
+const Bar = styled.form`
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -33,7 +35,8 @@ function SearchBar(props) {
   const [error, setError] = useState("Sign Up Failed...")
   const [isError, setIsError] = useState(false);
   const [userInput, setUserInput] = useState("");
-  function postSearch() {
+  function postSearch(event) {
+    event.preventDefault(); 
     var postData = {
       isEmpty: false,
       queryString: userInput
@@ -44,6 +47,8 @@ function SearchBar(props) {
         'Content-Type': 'application/json'
       }
     };
+
+    console.log(userInput)
 
     axios.post("http://localhost:5000/api/mentor", postData, config)
     .then(result => {
@@ -67,18 +72,17 @@ function SearchBar(props) {
   }
 
   return(
-    <Bar>
+      <Bar onSubmit={(e) => postSearch(e)}>
       <Input 
-      defaultValue="Search For A Mentor" 
+      defaultValue="" 
       type="text"
       value={userInput}
       onChange={e => {
           setUserInput(e.target.value);
       }}>
       </Input>
-      <SearchButton onClick={postSearch}>Search</SearchButton>
-    </Bar>
-      
+      <SearchButton type="submit">Search</SearchButton>
+      </Bar>
   )
 }
 
