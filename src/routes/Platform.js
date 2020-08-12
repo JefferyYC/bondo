@@ -63,7 +63,7 @@ function Platform() {
                   <Container className="mentors">
                     <Row xs={2} md={2}>
                       {dataList.map(user => 
-                        <Col className="card">
+                        <Col>
                           <MentorPicRec data={user.email}height="300px" width="250px" url= {lyk}/>
                         </Col>
                       )}
