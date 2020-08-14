@@ -14,39 +14,52 @@ function Platform() {
     const [count, setCount] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const [postPerPage] = useState(6);
+    const [queryString, setQueryString] = useState("")
+    const [isEmpty, setIsEmpty] = useState(true)
+    const [query, setQuery] = useState({
+      isEmpty: true,
+      currentPage: 1,
+      postPerPage: 6,
+      queryString: ""
+  })
 
     const paginate = (n) => {
       setCurrentPage(n);
     }
 
-    var postData = {
-        isEmpty: true,
+    //when current page changes, query change
+    useEffect(() => {
+      setQuery({
+        isEmpty: isEmpty,
         currentPage: currentPage,
-        postPerPage: postPerPage
-    };
+        postPerPage: 6,
+        queryString: queryString
+    })
+    }, [currentPage, queryString, isEmpty])
+
     const config = {
         headers: {
           'Content-Type': 'application/json'
         }
       };
     
-    //make a request everytime currentPage changes
+    //when query changes, we make a new request
     useEffect(() => {
-      console.log("activate")
-      axios.post("http://localhost:5000/api/mentor", postData, config)
+      console.log("query changed, activate server call. query at request is")
+      console.log(query)
+      axios.post("http://localhost:5000/api/mentor", query, config)
       .then(result => {
         if (result.status === 200) {
           console.log("successful load mentor data!")
           setCount(result.data.total)
           setDataList(result.data.users)
-          console.log(dataList)
         } else {
           console.log("unsucessful load mentor data")
         }
       }).catch(e => {
         console.log("Error when load mentor data!")
       });
-    }, [currentPage]);
+    }, [query]);
 
 
   return (
@@ -56,7 +69,7 @@ function Platform() {
             <Filter setDataList={setDataList}></Filter>
             <div className="right">
                 <div className="search">
-                    <SearchBar setDataList={setDataList}></SearchBar>
+                    <SearchBar setIsEmpty={setIsEmpty} setCurrentPage={setCurrentPage} setQueryString={setQueryString}></SearchBar>
                 </div>
                 <div className="right_bottom">
                   <h1 style={{textAlign:"center"}}>Find your mentors!</h1>

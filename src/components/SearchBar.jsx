@@ -1,8 +1,5 @@
 import React, {useState} from "react";
 import styled from 'styled-components';
-import axios from 'axios';
-import { Form } from "../components/AuthForm";
-
 
 const Input = styled.input`
   padding: 0.5em;
@@ -32,43 +29,12 @@ const Bar = styled.form`
 `;
 
 function SearchBar(props) {
-  const [error, setError] = useState("Sign Up Failed...")
-  const [isError, setIsError] = useState(false);
   const [userInput, setUserInput] = useState("");
   function postSearch(event) {
     event.preventDefault(); 
-    var postData = {
-      isEmpty: false,
-      queryString: userInput
-    };  
-
-    const config = {
-      headers: {  
-        'Content-Type': 'application/json'
-      }
-    };
-
-    console.log(userInput)
-
-    axios.post("http://localhost:5000/api/mentor", postData, config)
-    .then(result => {
-      if (result.status === 200) {
-        console.log("successful load of search result!")
-        console.log(props.setDataList)
-        props.setDataList(result.data.users)
-        // Testing
-        console.log(result.data.users)
-        console.log(result.dataList)
-      } else {
-        console.log("unsucessful load of search result!")
-        setError(result.data.users)
-        setIsError(true)
-      }
-    }).catch(e => {
-      console.log(e )
-      setError("Fail to return data from backend for searchBar")
-      setIsError(true);
-    });
+    props.setCurrentPage(1)
+    props.setQueryString(userInput)
+    props.setIsEmpty(false)
   }
 
   return(
