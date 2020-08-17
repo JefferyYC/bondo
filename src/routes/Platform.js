@@ -77,7 +77,7 @@ function Platform() {
                     <Row xs={2} md={2}>
                       {dataList.map(user => 
                         <Col>
-                          <MentorPicRec data={user.email}height="300px" width="250px" url= {lyk}/>
+                          <MentorPicRec email={user.email} name={user.name} height="300px" width="250px" url= {lyk}/>
                         </Col>
                       )}
                     </Row>
