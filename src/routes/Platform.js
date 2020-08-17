@@ -20,7 +20,8 @@ function Platform() {
       isEmpty: true,
       currentPage: 1,
       postPerPage: 6,
-      queryString: ""
+      queryString: "",
+      count: 0
   })
 
     const paginate = (n) => {
@@ -33,9 +34,10 @@ function Platform() {
         isEmpty: isEmpty,
         currentPage: currentPage,
         postPerPage: 6,
-        queryString: queryString
+        queryString: queryString,
+        count: count
     })
-    }, [currentPage, queryString, isEmpty])
+    }, [currentPage, queryString, isEmpty, count])
 
     const config = {
         headers: {
@@ -52,6 +54,7 @@ function Platform() {
         if (result.status === 200) {
           console.log("successful load mentor data!")
           setCount(result.data.total)
+          console.log(count)
           setDataList(result.data.users)
         } else {
           console.log("unsucessful load mentor data")
