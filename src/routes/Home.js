@@ -28,7 +28,7 @@ export const Home = (props) => (
         </Link>
         <Link to="/Login" id="login">Login</Link>
         <Link to="/signup" id="signup">Sign Up</Link>
-        <Link to="/about" id="signup">Mentor Sign Up</Link>
+        <Link to="/mentorsignup" id="signup">Mentor Sign Up</Link>
         <div className = "Intro">
             <h1 id="introHeader"> 
                 Bondo<br></br>World Leading Mentorship Platform

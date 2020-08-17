@@ -3,6 +3,7 @@
 // import axios from 'axios';
 // import logoImg from "../lyk.jpeg";
 // import { Card, Logo, Form, Input, Button, Error } from '../components/AuthForm';
+// import Profilepicture from '../components/profile_pictures.jsx';
 
 // function MentorSignup() {
 
@@ -119,6 +120,8 @@
 
 // export default MentorSignup;
 
+
+
 import React, { useState } from "react";
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
@@ -126,7 +129,7 @@ import logoImg from "../lyk.jpeg";
 import { Card, Logo, Form, Input, Button, Error } from '../components/AuthForm';
 import Profilepicture from '../components/profile_pictures.jsx';
 
-function Signup() {
+function Mentorsignup() {
 
   const [isSignedUp, setSignedUp] = useState(false);
   const [error, setError] = useState("Sign Up Failed...")
@@ -134,12 +137,18 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [introduction, setIntroduction] = useState("");
+  const [experience, setExperience] = useState("");
+  const [education, setEducation] = useState("");
 
-  function register() {
+  function mentor_register() {
     var postData = {
       name: userName,
       email: email,
-      password: password
+      password: password,
+      introduction: introduction,
+      experience: experience,
+      education: education
     };
 
     const config = {
@@ -148,7 +157,7 @@ function Signup() {
       }
     };
 
-    axios.post("http://localhost:5000/api/user/register", postData, config)
+    axios.post("http://localhost:5000/api/user/mentor_register", postData, config)
     .then(result => {
       if (result.status === 200) {
         console.log("successful register!")
@@ -167,7 +176,7 @@ function Signup() {
 
   //If successfully signed up, redirect to login page
   if (isSignedUp) {
-    return <Redirect to="/Login" />;
+    return <Redirect to="/MentorLogin" />;
   }
 
   return (
@@ -202,13 +211,42 @@ function Signup() {
               }}
               placeholder="password"
             />
-          <Button onClick={register}>Sign Up</Button>
+            <Input
+              type="introduction"
+              value={introduction}
+              onChange={e => {
+                setIntroduction(e.target.value);
+              }}
+              placeholder="introduction"
+            />
+            <Input
+              type="experience"
+              value={experience}
+              onChange={e => {
+                setExperience(e.target.value);
+              }}
+              placeholder="experience"
+            />
+            <Input
+              type="education"
+              value={education}
+              onChange={e => {
+                setEducation(e.target.value);
+              }}
+              placeholder="education"
+            />
+          <Button onClick={mentor_register}>Sign Up</Button>
         </Form>
-        <Link to="/login">Already have an account?</Link>
+        <Link to="/Mentor_login">Already have an account?</Link>
         { isError &&<Error>{error}</Error> }
       </Card>
     </div>
   );
 }
 
-export default Signup;
+export default Mentorsignup;
+
+
+
+
+
