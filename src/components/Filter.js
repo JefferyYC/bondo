@@ -2,7 +2,9 @@ import styled from 'styled-components';
 import React, {useState} from 'react'
 import { Component } from 'react';
 import axios from 'axios';
-
+import { Container, Row, Col } from 'react-bootstrap';
+import 'rc-slider/assets/index.css';
+import {Range} from 'rc-slider';
 
 const Block = styled.div`
     position: relative;
@@ -23,28 +25,32 @@ const SearchButton = styled.button`
   font-size: 1rem;
 `;
 
-const PROFESSION = ["SWE", "Consulting", "HR"];
-const EXPERIENCE = ["Entry-Level", "Manager"]
+const PROFESSION = ["SWE", "Consulting", "Data Analysis", "Grad School Application"];
+const EDUCATION = ["Bachelor", "Master", "PhD"]
+const DAY = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"] //to be added
+const TIME = ["7:00 - 12:00", "12:00-17:00", "17:00-20:00", "20:00-0:00"]
 const NAMES = ["Jeffery", "lyk"]
 
+const prices={0:"0", 10:"10", 20:"20", 30:"30", 40:"40", 50:"50", 60:"60", 70:"70", 80:"80", 90:"90", 100:"100+"}
 
 class Filter extends Component {
   state = {
     //turn [1,2,3] into {1:False, 2:False, 3:False}
-    professions: PROFESSION.reduce(
+    profession: PROFESSION.reduce(
       (options, option) => ({
         ...options,
         [option]: false
       }),
       {}
     ),
-    experiences: EXPERIENCE.reduce(
+    education: EDUCATION.reduce(
       (options, option) => ({
         ...options,
         [option]: false
       }),
       {}
     ),
+    price: [],
     names: NAMES.reduce(
       (options, option) => ({
         ...options,
@@ -79,26 +85,26 @@ class Filter extends Component {
 
   handleCheckboxChange = list => {
     switch(list){
-      case this.state.professions:
+      case this.state.profession:
         return changeEvent => {
           const { name } = changeEvent.target;
       
           this.setState(prevState => ({
-            professions: {
-              ...prevState.professions,
-              [name]: !prevState.professions[name]
+            profession: {
+              ...prevState.profession,
+              [name]: !prevState.profession[name]
             }
           }));
         };
       
-      case this.state.experiences:
+      case this.state.education:
         return changeEvent => {
           const { name } = changeEvent.target;
       
           this.setState(prevState => ({
-            experiences: {
-              ...prevState.experiences,
-              [name]: !prevState.experiences[name]
+            education: {
+              ...prevState.education,
+              [name]: !prevState.education[name]
             }
           }));
         };
@@ -122,7 +128,7 @@ class Filter extends Component {
 
   createCheckbox = list => {
     return option => {
-    return <div className="form-check">
+    return <Col className="form-check">
       <label>
         <input
           type="checkbox"
@@ -133,22 +139,35 @@ class Filter extends Component {
         />
         {option}
       </label>
-    </div>
+    </Col>
     }
   };
   
   render() {
     return (
+      
       <Block>
         <h1> Filter </h1>
-        <p>Profession: </p>
-        {PROFESSION.map(this.createCheckbox(this.state.professions))}
-        <p>Experience: </p>
-        {EXPERIENCE.map(this.createCheckbox(this.state.experiences))}
+        <p>Areas of Expertise: </p>
+        <Container>
+          <Row xs={2} md={2}>
+            {PROFESSION.map(this.createCheckbox(this.state.profession))}
+          </Row>
+        </Container>
+        <p>Education: </p>
+        <Container>
+          <Row xs={2} md={2}>
+            {EDUCATION.map(this.createCheckbox(this.state.education))}
+          </Row>
+        </Container>
+        <p>Price: </p>
+        <Range min={0} max={100} step={10} marks={prices} allowCross={false} onChange={(r) => this.setState({price: r})}></Range>
+        <br></br>
         <p>Names: </p>
         {NAMES.map(this.createCheckbox(this.state.names))}
         <SearchButton onClick={() => {this.postSearch(NAMES)}}>Apply filters</SearchButton>
       </Block>
+      
     )
   };
 }

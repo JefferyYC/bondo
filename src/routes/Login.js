@@ -52,7 +52,7 @@ function Login() {
     }
 
     if (isLoggedIn) {
-        return <Redirect to="/" />;
+        return <Redirect to="/Platform" />;
       }
 
     return (

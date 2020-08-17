@@ -15,6 +15,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.25",
+    "rc-slider": "^9.3.1",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.13.1",
