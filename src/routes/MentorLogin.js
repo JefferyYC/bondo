@@ -2,22 +2,30 @@ import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import axios from 'axios';
 import logoImg from "../lyk.jpeg";
-import { Card, Logo, Form, Input, Button, Error } from "../components/AuthForm";
+import { Card, Logo, Input, Button, Error } from "../components/AuthForm";
 import { useAuth } from "../context/auth";
-import Profilepicture from '../components/profile_pictures.jsx';
+import styled from 'styled-components';
 
-function Login() {
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+
+
+function MentorLogin() {
 
     const [isLoggedIn, setLoggedIn] = useState(false);
     const [isError, setIsError] = useState(false);
-    const [email, setEmail] = useState("");
+    const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const { authTokens, setAuthTokens } = useAuth();
-    const [error, setError] = useState("");
 
-    function postLogin() {
+    function postMentorLogin(event) {
+      event.preventDefault();
       var postData = {
-        email: email,
+        email: userName,
         password: password
       };
 
@@ -27,7 +35,7 @@ function Login() {
         }
       };
 
-      axios.post("http://localhost:5000/api/user/login", postData, config)
+      axios.post("http://localhost:5000/api/user/mentor_login", postData, config)
       .then(result => {
         if (result.status === 200) {
           console.log("successful login")
@@ -35,52 +43,44 @@ function Login() {
           setLoggedIn(true);
         } else {
           console.log("unsuccessful")
-          setError(result.data);
           setIsError(true);
         }
       }).catch(e => {
         console.log("error")
-        setError(e.response.data)
         setIsError(true);
       });
     }
 
-    //if successfully logged in, redirect to home page
     if (isLoggedIn) {
-        return <Redirect to="/platform" />;
+        return <Redirect to="/" />;
       }
 
     return (
-      <div>
-        <Link to="/">
-          <Profilepicture height="60px" width="60px" url= {logoImg} top="20px" left="40px"/>
-        </Link>
-          <Card>
-              <Logo src={logoImg} />
-              <Form>
-                  <Input
-                  type="email"
-                  value={email}
-                  onChange={e => {
-                      setEmail(e.target.value);
-                  }}
-                  placeholder="email"
-                  />
-                  <Input
-                  type="password"
-                  value={password}
-                  onChange={e => {
-                      setPassword(e.target.value);
-                  }}
-                  placeholder="password"
-                  />
-                  <Button onClick={postLogin}>Sign In</Button>
-              </Form>
-              <Link to="/signup">Don't have an account?</Link>
-              { isError &&<Error>{error}</Error> }
-          </Card>
-        </div>
+        <Card>
+            <Logo src={logoImg} />
+            <Form onSubmit={(e) => postMentorLogin(e)}>
+                <Input
+                type="username"
+                value={userName}
+                onChange={e => {
+                    setUserName(e.target.value);
+                }}
+                placeholder="email"
+                />
+                <Input
+                type="password"
+                value={password}
+                onChange={e => {
+                    setPassword(e.target.value);
+                }}
+                placeholder="password"
+                />
+                <Button type="submit">Sign In</Button>
+            </Form>
+            <Link to="/mentorsignup">Don't have an account?</Link>
+            { isError &&<Error>The username or password provided were incorrect!</Error> }
+        </Card>
     );
 }
 
-export default Login;
+export default MentorLogin;

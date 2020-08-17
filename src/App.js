@@ -12,6 +12,7 @@ import Platform from './routes/Platform'
 import Profile from './routes/MyProfile'
 import Message from './routes/Message'
 import Mentorsignup from './routes/MentorSignup'
+import MentorLogin from './routes/MentorLogin'
 
 //reference: https://medium.com/better-programming/building-basic-react-authentication-e20a574d5e71
 import { MentorProfile} from './routes/MentorProfile';
@@ -37,6 +38,7 @@ function App() {
         <Route path="/myprofile" component={Profile}/>
         <Route path="/message" component={Message}/>
         <Route path="/mentorsignup" component={Mentorsignup}/>
+        <Route path="/mentorlogin" component={MentorLogin} />
         <PrivateRoute path="/platform" component={Platform} />  
         <PrivateRoute path="/about" component={About} />  
         </Switch> 
