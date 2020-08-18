@@ -57,7 +57,21 @@ class Filter extends Component {
         [option]: false
       }),
       {}
-    ),    
+    ),
+    day: DAY.reduce(
+      (options, option) => ({
+        ...options,
+        [option]: false
+      }),
+      {}
+    ), 
+    time: TIME.reduce(
+      (options, option) => ({
+        ...options,
+        [option]: false
+      }),
+      {}
+    )
   };
 
   postSearch = (n) => {
@@ -121,6 +135,30 @@ class Filter extends Component {
           }));
         };
 
+        case this.state.day:
+          return changeEvent => {
+            const { name } = changeEvent.target;
+        
+            this.setState(prevState => ({
+              day: {
+                ...prevState.day,
+                [name]: !prevState.day[name]
+              }
+            }));
+          };
+
+        case this.state.time:
+          return changeEvent => {
+            const { name } = changeEvent.target;
+        
+            this.setState(prevState => ({
+              time: {
+                ...prevState.time,
+                [name]: !prevState.time[name]
+              }
+            }));
+          };
+
         default:
           console.log("not found")
     }
@@ -163,6 +201,20 @@ class Filter extends Component {
         <p>Price: </p>
         <Range min={0} max={100} step={10} marks={prices} allowCross={false} onChange={(r) => this.setState({price: r})}></Range>
         <br></br>
+        <br></br>
+        <p>Availability: </p>
+        <p>Day: </p>
+        <Container>
+          <Row xs={2} md={2}>
+            {DAY.map(this.createCheckbox(this.state.day))}
+          </Row>
+        </Container>
+        <p>Time: </p>
+        <Container>
+          <Row xs={2} md={2}>
+            {TIME.map(this.createCheckbox(this.state.time))}
+          </Row>
+        </Container>
         <p>Names: </p>
         {NAMES.map(this.createCheckbox(this.state.names))}
         <SearchButton onClick={() => {this.postSearch(NAMES)}}>Apply filters</SearchButton>
