@@ -74,27 +74,40 @@ class Filter extends Component {
     )
   };
 
-  postSearch = (n) => {
-    var postData = {
-      isEmpty: false,
-      names: n
-    };
-    const config = {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    };
-    axios.post("http://localhost:5000/api/mentor", postData, config)
-    .then(result => {
-    if (result.status === 200) {
-      console.log("successful load of filter search result!")
-      this.props.setDataList(result.data.users)
-    } else {
-      console.log("unsucessful load of filter search result!")
+  postSearch = () => {
+    this.props.setIsEmpty(false)
+    this.props.setCurrentPage(1)
+    this.props.setFilter()
+  }
+
+  processState = () => {
+    var professions = PROFESSION.filter(p => {return this.state.profession[p]});
+    var educations = EDUCATION.filter(e => {return this.state.education[e]});
+    var days = DAY.filter(d => {return this.state.day[d]});
+    days = days.map(d => {return this.dayToInt(d)})
+    var times = []; //to be handled
+    var names = NAMES.filter(n => {return this.state.names[n]});
+  }
+
+  dayToInt = (d) => {
+    switch (d){
+      case "Mon":
+        return 1;
+      case "Tue":
+        return 2;
+      case "Wed":
+        return 3;
+      case "Thur":
+        return 4;
+      case "Fri":
+        return 5;
+      case "Sat":
+        return 6;
+      case "Sun":
+          return 7
+      default:
+          return "hi"
     }
-    }).catch(e => {
-    console.log(e)
-    });
   }
 
   handleCheckboxChange = list => {
@@ -182,6 +195,7 @@ class Filter extends Component {
   };
   
   render() {
+    console.log(this.processState())
     return (
       
       <Block>

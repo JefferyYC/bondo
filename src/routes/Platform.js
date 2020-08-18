@@ -21,7 +21,17 @@ function Platform() {
       currentPage: 1,
       postPerPage: 6,
       queryString: ""
-  })
+    })
+
+    const [filter, setFilter] = useState({
+      expertise: [],
+      education: [],
+      price: [],
+      day: [],
+      time: [],
+      name: []
+    })
+
 
     const paginate = (n) => {
       setCurrentPage(n);
@@ -33,9 +43,10 @@ function Platform() {
         isEmpty: isEmpty,
         currentPage: currentPage,
         postPerPage: 6,
-        queryString: queryString
+        queryString: queryString,
+        filter: filter
     })
-    }, [currentPage, queryString, isEmpty])
+    }, [currentPage, queryString, isEmpty, filter])
 
     const config = {
         headers: {
@@ -43,7 +54,7 @@ function Platform() {
         }
       };
     
-    //when query changes, we make a new request
+    //when search changes, we make a new request
     useEffect(() => {
       console.log("query changed, activate server call. query at request is")
       console.log(query)
@@ -66,7 +77,7 @@ function Platform() {
     <div className="Platform">
         <NavigationBar></NavigationBar>
         <div className="container">
-            <Filter setDataList={setDataList}></Filter>
+            <Filter setIsEmpty={setIsEmpty} setCurrentPage={setCurrentPage} setFilter={setFilter}></Filter>
             <div className="right">
                 <div className="search">
                     <SearchBar setIsEmpty={setIsEmpty} setCurrentPage={setCurrentPage} setQueryString={setQueryString}></SearchBar>
