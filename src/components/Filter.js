@@ -280,9 +280,7 @@ class Filter extends Component {
   };
   
   render() {
-    console.log(this.processState())
     return (
-      
       <Block>
         <h1> Filter </h1>
         <p>Areas of Expertise: </p>

@@ -39,13 +39,14 @@ function Platform() {
 
     //when current page changes, query change
     useEffect(() => {
-      setQuery({
+      const q = {
         isEmpty: isEmpty,
         currentPage: currentPage,
         postPerPage: 6,
-        queryString: queryString,
-        filter: filter
-    })
+        queryString: queryString
+      }
+      const newQuery = Object.assign({}, q, filter)
+      setQuery(newQuery)
     }, [currentPage, queryString, isEmpty, filter])
 
     const config = {
