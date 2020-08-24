@@ -29,8 +29,6 @@ const PROFESSION = ["SWE", "Consulting", "Data Analysis", "Grad School Applicati
 const EDUCATION = ["Bachelor", "Master", "PhD"]
 const DAY = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"] //to be added
 const TIME = ["7:00-12:00", "12:00-17:00", "17:00-20:00", "20:00-0:00"]
-const NAMES = ["Jeffery", "lyk"]
-
 const prices={0:"0", 10:"10", 20:"20", 30:"30", 40:"40", 50:"50", 60:"60", 70:"70", 80:"80", 90:"90", 100:"100+"}
 
 class Filter extends Component {
@@ -51,13 +49,6 @@ class Filter extends Component {
       {}
     ),
     price: [],
-    names: NAMES.reduce(
-      (options, option) => ({
-        ...options,
-        [option]: false
-      }),
-      {}
-    ),
     day: DAY.reduce(
       (options, option) => ({
         ...options,
@@ -91,8 +82,6 @@ class Filter extends Component {
     var times = TIME.filter(t => {return this.state.time[t]});
     times = times.map(t => {return this.timeToInt(t)});
     times = this.arrayToUndef(times)
-    var names = NAMES.filter(n => {return this.state.names[n]});
-    names = this.arrayToUndef(names)
     var prices = this.arrayToUndef(this.state.price)
     var data = {
       expertise: professions,
@@ -100,7 +89,6 @@ class Filter extends Component {
       price: prices,
       day: days,
       time: times,
-      name: names
     }
     return data
   }
@@ -221,18 +209,6 @@ class Filter extends Component {
           }));
         };
 
-      case this.state.names:
-        return changeEvent => {
-          const { name } = changeEvent.target;
-      
-          this.setState(prevState => ({
-            names: {
-              ...prevState.names,
-              [name]: !prevState.names[name]
-            }
-          }));
-        };
-
         case this.state.day:
           return changeEvent => {
             const { name } = changeEvent.target;
@@ -312,9 +288,7 @@ class Filter extends Component {
             {TIME.map(this.createCheckbox(this.state.time))}
           </Row>
         </Container>
-        <p>Names: </p>
-        {NAMES.map(this.createCheckbox(this.state.names))}
-        <SearchButton onClick={() => {this.postSearch(NAMES)}}>Apply filters</SearchButton>
+        <SearchButton onClick={() => {this.postSearch()}}>Apply filters</SearchButton>
       </Block>
       
     )

@@ -29,7 +29,6 @@ function Platform() {
       price: undefined,
       day: undefined,
       time: undefined,
-      name: undefined
     })
 
 
