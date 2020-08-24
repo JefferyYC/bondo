@@ -28,7 +28,7 @@ const SearchButton = styled.button`
 const PROFESSION = ["SWE", "Consulting", "Data Analysis", "Grad School Application"];
 const EDUCATION = ["Bachelor", "Master", "PhD"]
 const DAY = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"] //to be added
-const TIME = ["7:00 - 12:00", "12:00-17:00", "17:00-20:00", "20:00-0:00"]
+const TIME = ["7:00-12:00", "12:00-17:00", "17:00-20:00", "20:00-0:00"]
 const NAMES = ["Jeffery", "lyk"]
 
 const prices={0:"0", 10:"10", 20:"20", 30:"30", 40:"40", 50:"50", 60:"60", 70:"70", 80:"80", 90:"90", 100:"100+"}
@@ -77,16 +77,54 @@ class Filter extends Component {
   postSearch = () => {
     this.props.setIsEmpty(false)
     this.props.setCurrentPage(1)
-    this.props.setFilter()
+    this.props.setFilter(this.processState())
   }
 
   processState = () => {
     var professions = PROFESSION.filter(p => {return this.state.profession[p]});
+    professions = this.arrayToUndef(professions)
     var educations = EDUCATION.filter(e => {return this.state.education[e]});
+    educations = this.highestEdu(educations)
     var days = DAY.filter(d => {return this.state.day[d]});
     days = days.map(d => {return this.dayToInt(d)})
-    var times = []; //to be handled
+    days = this.arrayToUndef(days)
+    var times = TIME.filter(t => {return this.state.time[t]});
+    times = times.map(t => {return this.timeToInt(t)});
+    times = this.arrayToUndef(times)
     var names = NAMES.filter(n => {return this.state.names[n]});
+    names = this.arrayToUndef(names)
+    var prices = this.arrayToUndef(this.state.price)
+    var data = {
+      expertise: professions,
+      education: educations,
+      price: prices,
+      day: days,
+      time: times,
+      name: names
+    }
+    return data
+  }
+
+  arrayToUndef = (l) => {
+    if (l.length === 0) {
+      return undefined
+    } else {
+      return l
+    }
+  }
+
+  highestEdu = (l) => {
+    if (l.includes("PhD")) {
+      return "PhD"
+    }
+    else if (l.includes("Master")) {
+      return "Master"
+    }
+    else if (l.includes("Bachelor")) {
+      return "Bachelor"
+    } else {
+      return undefined
+    }
   }
 
   dayToInt = (d) => {
@@ -109,6 +147,53 @@ class Filter extends Component {
           return "hi"
     }
   }
+
+  //code for getting different time periods, might be useful in the future
+  /*
+  timeToInt = (t) => {
+    switch(t){
+      case "7:00-12:00":
+        return [7,12];
+      case "12:00-17:00":
+        return [12,17];
+      case "17:00-20:00":
+        return [17,20];
+      case "20:00-0:00":
+        return [20, 24]
+      default:
+        return "hi"
+    }
+  }
+
+  getPeriod = (l) => {
+    var i = 0
+    while (i < l.length-1) {
+      if (l[i][1] == l[i+1][0]) {
+        l[i+1][0] = l[i][0]
+        l.splice(i,1)
+      } else {
+        i += 1
+      }
+    }
+    return l
+  }
+  */
+
+ timeToInt = (t) => {
+  switch(t){
+    case "7:00-12:00":
+      return 1;
+    case "12:00-17:00":
+      return 2;
+    case "17:00-20:00":
+      return 3;
+    case "20:00-0:00":
+      return 4
+    default:
+      return "hi"
+  }
+}
+
 
   handleCheckboxChange = list => {
     switch(list){

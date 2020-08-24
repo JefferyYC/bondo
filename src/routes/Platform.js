@@ -24,12 +24,12 @@ function Platform() {
     })
 
     const [filter, setFilter] = useState({
-      expertise: [],
-      education: [],
-      price: [],
-      day: [],
-      time: [],
-      name: []
+      expertise: undefined,
+      education: undefined,
+      price: undefined,
+      day: undefined,
+      time: undefined,
+      name: undefined
     })
 
 
