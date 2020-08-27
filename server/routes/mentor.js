@@ -29,22 +29,7 @@ router.post('/', async (req, res) => {
         });
         return res.send({total: total, users: users})
     } else { 
-        // TODO: incorporate queryString
-/*
-        User.find(
-            // { $text: { $search: req.body.queryString } }, 
-            { name: { $regex: req.body.queryString, "$options": "i" } },
-            { score: { $meta: "textScore" } },
-            {sort: {score: {$meta: "textScore"}}}, 
-            function(err, result) {
-                if (err) {
-                    console.log(err)
-                }
-                console.log(result)
-                return res.send({total:0, users: result})
 
-            })
-*/
         await User.aggregate()
         .facet({
             expertise: [{$unwind: "$expertise"},
@@ -86,44 +71,31 @@ router.post('/', async (req, res) => {
                 })
 
             });
+        // TODO: price & education matching
 
-        
+        // TODO: incorporate queryString
 
-
-        
-        // SearcBar input
-        // var query = await User.find({ name: { $regex: req.body.queryString, "$options": "i" }}, { score: { $meta: "textScore" } });
-
-        // Filter
-        // Test using names
-        // if (req.body.expertise !== undefined) {
-            // var x
-            // for (x in req.body.names) {
-            //     query.where('names')
-            // }
-            // console.log(typeof query)
-            // User.find().elemMatch('expertise', function (elem) {
-            //     console.log(elem)
-            //     elem.in(req.body.expertise)
-            // })
-        //     User.find().where('expertise').in(req.body.expertse).exec(function (err, user) {
-        //         if (err) {
-        //             console.log(err)
-        //             return
-        //         }
-        //         console.log(user)
-        //         return res.send({total: 1, users: user})
-        //     })
-        // }
-
-        // query.exec(function (err, user) {
-        //     if (err) {
-        //         console.log(err)
-        //         return
-        //     }
-        //     console.log(user)
-        //     return res.send({total: 1, users: user})
-        // })
+        /*
+        // Working SearchBar(partial text search)
+        const total = await User.countDocuments({$text: { $search: req.body.queryString }}, function(err, count){
+            if (err) {
+                console.log(err)
+            }
+        });
+        const users = await User.find(
+            // { $text: { $search: req.body.queryString } }, 
+            { name: { $regex: req.body.queryString, "$options": "i" } },
+            { score: { $meta: "textScore" } }, {skip: postPerPage*(currentPage-1), limit: postPerPage}, 
+            function(err, res) {
+                if (err) {
+                    console.log(err)
+                }
+            })
+            .sort( { score: { $meta: "textScore" } })
+            
+        console.log(users)
+        return res.send({total: total, users: users})
+        */
         
     }
 })
