@@ -72,6 +72,8 @@
 }
 
 #description_mentor_content {
+    position: relative;
+    text-align: center;
     color: red;
 }
 

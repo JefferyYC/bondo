@@ -22,7 +22,6 @@ function Platform() {
       postPerPage: 6,
       queryString: ""
     })
-
     const [filter, setFilter] = useState({
       expertise: undefined,
       education: undefined,
@@ -30,7 +29,6 @@ function Platform() {
       day: undefined,
       time: undefined,
     })
-
 
     const paginate = (n) => {
       setCurrentPage(n);
@@ -63,6 +61,7 @@ function Platform() {
         if (result.status === 200) {
           console.log("successful load mentor data!")
           setCount(result.data.total)
+          console.log(count)
           setDataList(result.data.users)
         } else {
           console.log("unsucessful load mentor data")
@@ -71,7 +70,6 @@ function Platform() {
         console.log("Error when load mentor data!")
       });
     }, [query]);
-
 
   return (
     <div className="Platform">
@@ -88,7 +86,7 @@ function Platform() {
                     <Row xs={2} md={2}>
                       {dataList.map(user => 
                         <Col>
-                          <MentorPicRec data={user.email}height="300px" width="250px" url= {lyk}/>
+                          <MentorPicRec email={user.email} name={user.name} height="300px" width="250px" url= {lyk}/>
                         </Col>
                       )}
                     </Row>
